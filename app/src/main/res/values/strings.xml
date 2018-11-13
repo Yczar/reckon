@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Reckon</string>
+
+    <!--********************-->
+            <!--Titles-->
+    <!--********************-->
+    <string name="live_stock_picker">Pick Livestock</string>
+
+
+    <!--********************-->
+        <!--On Boarding-->
+    <!--********************-->
+    <!--*****Screen 1*****-->
+    <string name="screen_1_title">Screen one Title</string>
+    <string name="screen_1_desc">Lorem ipsum dolor sit amet, eget erat sit erat id eget, in nulla ut morbi vitae, egestas sit pellentesque id aptent conubia, nibh pellentesque.</string>
+
+    <!--*****Screen 2*****-->
+    <string name="screen_2_title">Screen two Title</string>
+    <string name="screen_2_desc">Lorem ipsum dolor sit amet, eget erat sit erat id eget, in nulla ut morbi vitae, egestas sit pellentesque id aptent conubia, nibh pellentesque.</string>
+
+    <!--*****Screen 3*****-->
+    <string name="screen_3_title">Screen three Title</string>
+    <string name="screen_3_desc">Lorem ipsum dolor sit amet, eget erat sit erat id eget, in nulla ut morbi vitae, egestas sit pellentesque id aptent conubia, nibh pellentesque.</string>
 </resources>
