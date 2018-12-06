@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="Gradle: android.arch.navigation:navigation-runtime:1.0.0-alpha07@aar">
+    <CLASSES>
+<<<<<<< HEAD:.idea/libraries/Gradle__android_arch_navigation_navigation_runtime_1_0_0_alpha04_aar.xml
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-navigation-runtime-1.0.0-alpha04.aar/81eee051dcdfe6c56f31eda1a8bc873f/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-navigation-runtime-1.0.0-alpha04.aar/81eee051dcdfe6c56f31eda1a8bc873f/res" />
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-navigation-runtime-1.0.0-alpha07.aar/1c13c2e339c1855dec3d15c9fce7249d/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/jetified-navigation-runtime-1.0.0-alpha07.aar/1c13c2e339c1855dec3d15c9fce7249d/res" />
+>>>>>>> app_intro:.idea/libraries/Gradle__android_arch_navigation_navigation_runtime_1_0_0_alpha07_aar.xml
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/android.arch.navigation/navigation-runtime/1.0.0-alpha07/bfdf6593d2f0ab7f6e4bf11252fe5b0a4536cac9/navigation-runtime-1.0.0-alpha07-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

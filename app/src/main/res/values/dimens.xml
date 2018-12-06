@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Padding & Margin-->
+    <dimen name="four_dp">4dp</dimen>
+    <dimen name="eight_dp">8dp</dimen>
+    <dimen name="sixteen_dp">16dp</dimen>
+    <dimen name="thirty_two_dp">32dp</dimen>
+    <dimen name="forty_eight_dp">48dp</dimen>
+
+    <!--Text Sizes-->
+    <dimen name="sixteen_sp">16sp</dimen>
+    <dimen name="twenty_four_sp">24sp</dimen>
+    <dimen name="thirty_two_sp">32sp</dimen>
+</resources>
