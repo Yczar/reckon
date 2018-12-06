@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:title="@string/ls_poultry"
+        android:id="@+id/poultry_menu"
+        android:icon="@drawable/ic_hen"
+        app:showAsAction="always"/>
+
+    <item
+        android:title="@string/ls_aquatic"
+        android:id="@+id/aquatic_menu"
+        android:icon="@drawable/ic_fish"
+        app:showAsAction="always"/>
+
+</menu>
