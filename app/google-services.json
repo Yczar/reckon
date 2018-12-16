@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "955520431408",
+    "firebase_url": "https://reckon-b5a4a.firebaseio.com",
+    "project_id": "reckon-b5a4a",
+    "storage_bucket": "reckon-b5a4a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955520431408:android:0c961326ad733a15",
+        "android_client_info": {
+          "package_name": "com.example.reckon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955520431408-10800mg0bblftmnnimqva2kbujp0uq0p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.reckon",
+            "certificate_hash": "b176e2057c7d0fc69bb442cd1cc683ae8058c7a1"
+          }
+        },
+        {
+          "client_id": "955520431408-57lvjuoj2bcqrfu2ic94hd8tj1lsg02s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMaz1BpCAy_XP0zOzwr00pjpRKpaVWzs8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955520431408-57lvjuoj2bcqrfu2ic94hd8tj1lsg02s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
