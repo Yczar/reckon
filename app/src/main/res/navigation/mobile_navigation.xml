@@ -3,13 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/liveStockPicker">
+    app:startDestination="@id/aquatic_menu">
 
-    <fragment
-        android:id="@+id/liveStockPicker"
-        android:name="com.example.reckon.ui.fragment.LiveStockPicker"
-        android:label="fragment_live_stock_picker"
-        tools:layout="@layout/fragment_live_stock_picker" />
     <fragment
         android:id="@+id/aquatic_menu"
         android:name="com.example.reckon.ui.fragment.Fish"
