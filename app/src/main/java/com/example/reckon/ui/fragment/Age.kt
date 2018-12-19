@@ -14,6 +14,7 @@ import com.example.reckon.BaseActivity
 import com.example.reckon.R
 import com.example.reckon.adapter.AgeIngredientAdapter
 import com.example.reckon.utils.OnAgeExpandListener
+import com.example.reckon.utils.ToolbarTitleListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
@@ -41,6 +42,8 @@ class Age : Fragment(), OnAgeExpandListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as ToolbarTitleListener).updateTitle(R.string.ls_age_selector)
+
         baseActivity = BaseActivity()
 
         val safeArgs = AgeArgs.fromBundle(arguments)

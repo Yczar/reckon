@@ -1,18 +1,17 @@
 package com.example.reckon
 
-import android.app.DownloadManager
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.reckon.adapter.LiveStockAdapter
 import com.example.reckon.utils.OnLiveStockItemSelectedListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import org.jetbrains.anko.find
-import java.nio.file.Files.find
 
 open class BaseActivity : AppCompatActivity(){
 
@@ -21,7 +20,7 @@ open class BaseActivity : AppCompatActivity(){
     val ageCollection : String = "Age"
 
     /*----------------------------------*/
-            /**Adapter Helper*/
+    /**Adapter Helper*/
     /*----------------------------------*/
     lateinit var adapter: LiveStockAdapter
     /**
@@ -48,7 +47,7 @@ open class BaseActivity : AppCompatActivity(){
                 Snackbar.make(find(android.R.id.content), "$e", Snackbar.LENGTH_LONG).show()
             }
         }
-        rv.layoutManager = LinearLayoutManager(this)
+        rv.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         rv.adapter = adapter
     }
 }

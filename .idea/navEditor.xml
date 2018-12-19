@@ -25,8 +25,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-332" />
-                            <option name="y" value="-273" />
+                            <option name="x" value="-341" />
+                            <option name="y" value="-215" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -41,25 +41,13 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="liveStockPicker">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-330" />
-                            <option name="y" value="-621" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
                   <entry key="poultry_menu">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-119" />
-                            <option name="y" value="84" />
+                            <option name="x" value="-340" />
+                            <option name="y" value="-563" />
                           </Point>
                         </option>
                         <option name="myPositions">

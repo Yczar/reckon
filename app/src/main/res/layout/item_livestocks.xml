@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:background="@color/colorPrimary"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.card.MaterialCardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/Widget.MaterialComponents.CardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/eight_dp"
-        android:layout_marginLeft="@dimen/mtrl_card_spacing"
-        android:layout_marginTop="@dimen/mtrl_card_spacing"
-        android:layout_marginRight="@dimen/mtrl_card_spacing"
-        android:minHeight="200dp">
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.MaterialComponents.CardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/eight_dp"
+    android:layout_marginLeft="@dimen/mtrl_card_spacing"
+    android:layout_marginTop="@dimen/mtrl_card_spacing"
+    android:layout_marginRight="@dimen/mtrl_card_spacing"
+    android:layout_marginBottom="@dimen/eight_dp"
+    app:cardElevation="@dimen/four_dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -24,20 +20,19 @@
                 android:contentDescription="@string/image_content_description"
                 android:id="@+id/img_livestock"
                 android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
+                android:layout_height="wrap_content"
                 android:src="@drawable/cat_fish"/>
 
             <TextView
                 android:layout_below="@+id/img_livestock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cat Fish"
+                tools:text="Cat Fish"
                 android:textSize="@dimen/sixteen_sp"
                 android:padding="@dimen/eight_dp"
                 android:id="@+id/tv_livestock"/>
         </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>
-
-</RelativeLayout>
