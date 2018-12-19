@@ -19,7 +19,8 @@ open class LiveStockAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LivestockHolder {
         //Inflate the lick stock here
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_livestocks, parent, false)
+        val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_livestocks, parent, false)
         return LivestockHolder(view)
     }
 
@@ -35,7 +36,7 @@ class LivestockHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
     ){
         val livestock = snapshot.toObject(LiveStockList::class.java) ?: return
         //Load Image
-        Picasso.with(itemView.img_livestock.context)
+        Picasso.get()
                 .load(livestock.image)
                 .into(itemView.img_livestock)
 

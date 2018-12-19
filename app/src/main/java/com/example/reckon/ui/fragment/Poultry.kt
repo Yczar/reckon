@@ -1,9 +1,7 @@
 package com.example.reckon.ui.fragment
 
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 
 import androidx.fragment.app.Fragment
 
@@ -66,7 +64,8 @@ class Poultry : Fragment(), OnLiveStockItemSelectedListener {
 
     override fun onLiveStockSelected(livestock: DocumentSnapshot) {
         val id = livestock.id
-        val docId = PoultryDirections.ActionPoultryMenuToAge().setId("${baseActivity.poultryCollection}/$id")
+        val docId =
+                PoultryDirections.ActionPoultryMenuToAge().setId("${baseActivity.poultryCollection}/$id")
         Navigation.findNavController(this.view!!).navigate(docId)
     }
 }// Required empty public constructor

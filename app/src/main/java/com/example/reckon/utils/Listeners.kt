@@ -2,6 +2,7 @@ package com.example.reckon.utils
 
 import androidx.annotation.StringRes
 import com.google.firebase.firestore.DocumentSnapshot
+import java.util.*
 
 interface ToolbarTitleListener {
     fun updateTitle(@StringRes title: Int)
@@ -12,5 +13,5 @@ interface OnLiveStockItemSelectedListener{
 }
 
 interface OnAgeExpandListener{
-    fun onLiveStockSelected(livestockAge : DocumentSnapshot)
+    fun onLiveStockAgeSelected(ingredients : Map<String, Objects>)
 }

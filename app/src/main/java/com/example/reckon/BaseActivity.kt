@@ -1,5 +1,6 @@
 package com.example.reckon
 
+import android.app.DownloadManager
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import org.jetbrains.anko.find
+import java.nio.file.Files.find
 
 open class BaseActivity : AppCompatActivity(){
 

@@ -10,6 +10,9 @@ data class LiveStockList(
 )
 
 data class AgeRange(
-        val age_ranges: Map<String, Objects>? = null
+        val age_range : String? = null,
+        val image_url : String? = null
+//        val ingredients: Map<String, Objects>? = null
+
 
 )

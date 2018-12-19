@@ -8,6 +8,6 @@ class OnBoarding : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.on_boarding)
+        //setContentView(R.layout.on_boarding)
     }
 }

@@ -1,6 +1,5 @@
 package com.example.reckon.ui.fragment
 
-
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.BaseActivity
 import com.example.reckon.R
 import com.example.reckon.adapter.AgeIngredientAdapter
+import com.example.reckon.utils.OnAgeExpandListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
@@ -21,8 +21,10 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.fragment_age.*
 import org.jetbrains.anko.support.v4.find
+import java.nio.file.Files.find
+import java.util.*
 
-class Age : Fragment() {
+class Age : Fragment(), OnAgeExpandListener {
 
     lateinit var ARG_ID: String
 
@@ -48,6 +50,7 @@ class Age : Fragment() {
 
         db = FirebaseFirestore.getInstance()
         query = db.collection("$ARG_ID/${baseActivity.ageCollection}")
+        Log.d("ccccccc", "$ARG_ID/${baseActivity.ageCollection}")
         getLiveStocksAge(tv, rv_age, query)
     }
 
@@ -55,7 +58,7 @@ class Age : Fragment() {
             ll: TextView,
             rv: RecyclerView,
             type: Query) {
-        adapter = object : AgeIngredientAdapter(type) {
+        adapter = object : AgeIngredientAdapter(type, this) {
             override fun onDataChanged() {
                 val rootRef = FirebaseFirestore.getInstance()
                 val codesRef = rootRef.collection("$ARG_ID/${baseActivity.ageCollection}").document("NgrvrSjyMOWN33BkDpB2")
@@ -91,5 +94,10 @@ class Age : Fragment() {
     override fun onStart() {
         super.onStart()
         adapter.startListening()
+    }
+    override fun onLiveStockAgeSelected(ingredients: Map<String, Objects>) {
+        //or change the listener parameter to the ingredients map object and pass it as argument
+        //to the ingredient fragment
+        val frament = ModifyIngredient.newInstance(ingredients)
     }
 }
