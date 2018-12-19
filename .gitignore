@@ -34,3 +34,5 @@ captures/
 # Android Studio
 *.iml
 .idea
+.idea/libraries
+.idea/workspace.xml
