@@ -32,4 +32,6 @@
 
     <string name="ls_aquatic">Aquatic</string>
     <string name="ls_poultry">Poultry</string>
+
+    <string name="ls_age_selector">Select Age</string>
 </resources>

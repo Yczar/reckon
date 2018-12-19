@@ -19,18 +19,18 @@ import java.util.Objects;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ModifyIngredient extends Fragment {
+public class SelectIngredient extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     RecyclerView mRecyclerView;
     IngredientsAdapter mIngredientsAdapter;
     Map<String, Number> ingredients;
 
-    public ModifyIngredient() {
+    public SelectIngredient() {
         // Required empty public constructor
     }
 
-    public static ModifyIngredient newInstance(Map<String, Objects> ingredient) {
-        ModifyIngredient fragment = new ModifyIngredient();
+    public static SelectIngredient newInstance(Map<String, Objects> ingredient) {
+        SelectIngredient fragment = new SelectIngredient();
         Bundle args = new Bundle();
 //        args.putMap(ARG_PARAM1, ingredient);
         fragment.setArguments(args);
@@ -51,7 +51,7 @@ public class ModifyIngredient extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout
-                .fragment_modify_ingredient, container, false);
+                .fragment_select_ingredient, container, false);
 
         mRecyclerView = view.findViewById(R.id.recycler_view);
         mIngredientsAdapter = new IngredientsAdapter(ingredients);

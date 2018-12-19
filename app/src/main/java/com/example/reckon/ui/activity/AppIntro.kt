@@ -13,7 +13,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
-import com.example.reckon.PageAdapter
+import com.example.reckon.OnBoarding.PageAdapter
 import com.example.reckon.R
 import com.example.reckon.utils.PrefManager
 import kotlinx.android.synthetic.main.app_intro.*
@@ -64,7 +64,7 @@ class AppIntro : AppCompatActivity(), OnClickListener {
         i_btn_next.setOnClickListener(this)
         btn_get_started.setOnClickListener(this)
 
-        mPageAdapter = PageAdapter(appIntroLayouts,this)
+        mPageAdapter = PageAdapter(appIntroLayouts, this)
         mViewPager.adapter = mPageAdapter
 
         makeDots(0)

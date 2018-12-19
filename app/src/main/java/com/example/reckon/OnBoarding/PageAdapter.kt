@@ -1,4 +1,4 @@
-package com.example.reckon
+package com.example.reckon.OnBoarding
 
 import android.content.Context
 import android.view.LayoutInflater

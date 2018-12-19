@@ -13,6 +13,4 @@ data class AgeRange(
         val age_range : String? = null,
         val image_url : String? = null
 //        val ingredients: Map<String, Objects>? = null
-
-
 )

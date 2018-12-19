@@ -7,4 +7,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/tv_ingredient"/>
 
+    <!--There should be a check box here-->
+
 </LinearLayout>
