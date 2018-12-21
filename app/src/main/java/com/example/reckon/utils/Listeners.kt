@@ -5,7 +5,10 @@ import com.google.firebase.firestore.DocumentSnapshot
 import java.util.*
 
 interface ToolbarTitleListener {
-    fun updateTitle(@StringRes title: Int)
+
+    //Update this SAM to take two parameters to update said toolbar -*Fave
+    fun updateTitle(@StringRes titleRes: Int?, titleString: String?)
+
 }
 
 interface OnLiveStockItemSelectedListener{
@@ -13,5 +16,6 @@ interface OnLiveStockItemSelectedListener{
 }
 
 interface OnAgeExpandListener{
-    fun onLiveStockAgeSelected(ingredients : Map<String, Objects>)
+    //Change the value type from Objects to Any -*Fave
+    fun onLiveStockAgeSelected(ingredients : Map<String, Any>)
 }

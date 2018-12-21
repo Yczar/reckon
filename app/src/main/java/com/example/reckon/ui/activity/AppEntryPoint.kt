@@ -1,6 +1,7 @@
 package com.example.reckon.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.drawerlayout.widget.DrawerLayout
@@ -43,8 +44,27 @@ class AppEntryPoint : BaseActivity(), ToolbarTitleListener{
     }
 
     //Make title update
-    override fun updateTitle(@StringRes title: Int) {
-        toolbarTitle.setText(title)
+    override fun updateTitle(@StringRes titleRes: Int?, titleString: String?) {
+
+        //Handling the usage of the two nullable values in updateTitle -*Fave
+        try {
+
+            if(titleRes != null && titleString == null){
+                toolbarTitle.text = getString(titleRes)
+            }
+            else if(titleString != null && titleRes == null){
+                toolbarTitle.text = titleString
+            }
+            else if (titleRes== null && titleString == null){
+                toolbarTitle.text = getString(R.string.app_name)
+            }else{
+                throw IllegalStateException("Two of the values cannot be not null!")
+            }
+
+        }catch (e: IllegalStateException){
+            Log.d(AppEntryPoint::class.java.simpleName, "Both of the updateTitle SAM cannot be non_null")
+        }
+
     }
 
     /**

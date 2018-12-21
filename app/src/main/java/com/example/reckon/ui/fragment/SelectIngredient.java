@@ -2,60 +2,67 @@ package com.example.reckon.ui.fragment;
 
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.reckon.R;
 import com.example.reckon.adapter.IngredientsAdapter;
+import com.example.reckon.utils.PrefManager;
+import com.example.reckon.utils.ToolbarTitleListener;
 
-import java.util.Map;
-import java.util.Objects;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SelectIngredient extends Fragment {
-    private static final String ARG_PARAM1 = "param1";
     RecyclerView mRecyclerView;
     IngredientsAdapter mIngredientsAdapter;
-    Map<String, Number> ingredients;
+
 
     public SelectIngredient() {
         // Required empty public constructor
     }
 
-    public static SelectIngredient newInstance(Map<String, Objects> ingredient) {
-        SelectIngredient fragment = new SelectIngredient();
-        Bundle args = new Bundle();
-//        args.putMap(ARG_PARAM1, ingredient);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-//            ingredients = getArguments().getMap(ARG_PARAM1);
-        }
+
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        //Code to update the update the toolbar's title - *Fave
+        PrefManager manager = new PrefManager(getContext());
+
+        ToolbarTitleListener toolbarTitleListener = (ToolbarTitleListener)getActivity();
+        toolbarTitleListener.updateTitle(null, manager.getSelectedLiveStockToSP());
+
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout
                 .fragment_select_ingredient, container, false);
 
         mRecyclerView = view.findViewById(R.id.recycler_view);
-        mIngredientsAdapter = new IngredientsAdapter(ingredients);
+        mIngredientsAdapter = new IngredientsAdapter(new PrefManager(getContext()).getIngredientsValuesFromSP());
+
         mRecyclerView.setHasFixedSize(true);
+
+        //Added the LayoutManager -*Fave
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mIngredientsAdapter);
         return view;
     }

@@ -14,6 +14,7 @@ import com.example.reckon.BaseActivity
 import com.example.reckon.R
 import com.example.reckon.adapter.AgeIngredientAdapter
 import com.example.reckon.utils.OnAgeExpandListener
+import com.example.reckon.utils.PrefManager
 import com.example.reckon.utils.ToolbarTitleListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
@@ -22,7 +23,6 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.fragment_age.*
 import org.jetbrains.anko.support.v4.find
-import java.util.*
 
 class Age : Fragment(), OnAgeExpandListener {
 
@@ -41,7 +41,9 @@ class Age : Fragment(), OnAgeExpandListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as ToolbarTitleListener).updateTitle(R.string.ls_age_selector)
+
+        //Made the string parameter null -*Fave
+        (activity as ToolbarTitleListener).updateTitle(R.string.ls_age_selector, null)
 
         baseActivity = BaseActivity()
 
@@ -52,7 +54,7 @@ class Age : Fragment(), OnAgeExpandListener {
 
         db = FirebaseFirestore.getInstance()
         query = db.collection("$ARG_ID/${baseActivity.ageCollection}")
-        Log.d("ccccccc", "$ARG_ID/${baseActivity.ageCollection}")
+        Log.d(Age::class.java.simpleName, "$ARG_ID/${baseActivity.ageCollection}")
         getLiveStocksAge(tv, rv_age, query)
     }
 
@@ -101,9 +103,9 @@ class Age : Fragment(), OnAgeExpandListener {
         adapter.startListening()
     }
 
-    override fun onLiveStockAgeSelected(ingredients: Map<String, Objects>) {
-        //or change the listener parameter to the ingredients map object and pass it as argument
-        //to the ingredient fragment
-        val frament = SelectIngredient.newInstance(ingredients)
+    override fun onLiveStockAgeSelected(ingredients: Map<String, Any>) {
+
+       //Writing the map values and keys to SharedPreferences -*Fave
+       PrefManager(context!!).writeMapValuesToPrefs(ingredients)
     }
 }

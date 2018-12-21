@@ -34,4 +34,5 @@
     <string name="ls_poultry">Poultry</string>
 
     <string name="ls_age_selector">Select Age</string>
+    <string name="modify_ingredients">Modify Ingredients</string>
 </resources>
