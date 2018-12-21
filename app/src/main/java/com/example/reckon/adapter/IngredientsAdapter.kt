@@ -3,12 +3,16 @@ package com.example.reckon.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.R
+import com.example.reckon.utils.OnIngredientItemSelected
 import kotlinx.android.synthetic.main.item_ingredients.view.*
+import org.jetbrains.anko.sdk27.coroutines.onCheckedChange
 
 class IngredientsAdapter(
+        val onIngredientItemSelected: OnIngredientItemSelected,
         val ingredients : Map<String, *>):
         RecyclerView.Adapter<IngredientsAdapter.IngredientHolder>() {
 
@@ -26,6 +30,12 @@ class IngredientsAdapter(
 
         val key  = ingredients.keys.toTypedArray()
         holder.bind(key[position])
+
+        val checkBox = holder.itemView.findViewById<CheckBox>(R.id.item_ingredient_checkbox)
+
+        checkBox.onCheckedChange { buttonView, isChecked ->
+            if (isChecked) onIngredientItemSelected.onItemSelected(key[position]) else onIngredientItemSelected.onItemDeSelected(key[position])
+        }
     }
 
     class IngredientHolder(itemView : View) : RecyclerView.ViewHolder(itemView){

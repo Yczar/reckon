@@ -19,3 +19,9 @@ interface OnAgeExpandListener{
     //Change the value type from Objects to Any -*Fave
     fun onLiveStockAgeSelected(ingredients : Map<String, Any>)
 }
+
+interface OnIngredientItemSelected{
+    fun onItemSelected(ingredient: String)
+
+    fun onItemDeSelected(ingredient: String)
+}

@@ -35,4 +35,5 @@
 
     <string name="ls_age_selector">Select Age</string>
     <string name="modify_ingredients">Modify Ingredients</string>
+    <string name="done">DONE</string>
 </resources>

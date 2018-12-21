@@ -8,8 +8,14 @@ import android.view.ViewGroup;
 
 import com.example.reckon.R;
 import com.example.reckon.adapter.IngredientsAdapter;
+import com.example.reckon.utils.OnIngredientItemSelected;
 import com.example.reckon.utils.PrefManager;
 import com.example.reckon.utils.ToolbarTitleListener;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,9 +27,11 @@ import androidx.recyclerview.widget.RecyclerView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SelectIngredient extends Fragment {
+public class SelectIngredient extends Fragment implements OnIngredientItemSelected {
     RecyclerView mRecyclerView;
     IngredientsAdapter mIngredientsAdapter;
+    List<String> listOfIngredient = new ArrayList<>();
+    private PrefManager manager;
 
 
     public SelectIngredient() {
@@ -42,7 +50,7 @@ public class SelectIngredient extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         //Code to update the update the toolbar's title - *Fave
-        PrefManager manager = new PrefManager(getContext());
+         manager = new PrefManager(getContext());
 
         ToolbarTitleListener toolbarTitleListener = (ToolbarTitleListener)getActivity();
         toolbarTitleListener.updateTitle(null, manager.getSelectedLiveStockToSP());
@@ -57,7 +65,7 @@ public class SelectIngredient extends Fragment {
                 .fragment_select_ingredient, container, false);
 
         mRecyclerView = view.findViewById(R.id.recycler_view);
-        mIngredientsAdapter = new IngredientsAdapter(new PrefManager(getContext()).getIngredientsValuesFromSP());
+        mIngredientsAdapter = new IngredientsAdapter(this, manager.getIngredientsValuesFromSP());
 
         mRecyclerView.setHasFixedSize(true);
 
@@ -67,4 +75,15 @@ public class SelectIngredient extends Fragment {
         return view;
     }
 
+    @Override
+    public void onItemSelected(@NotNull String ingredient) {
+
+        //List of Ingredient to be passed to the ModifyIngredient fragment -*Fave
+        listOfIngredient.add(ingredient);
+    }
+
+    @Override
+    public void onItemDeSelected(@NotNull String ingredient) {
+        listOfIngredient.remove(ingredient);
+    }
 }
