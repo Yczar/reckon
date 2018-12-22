@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.R
 import com.example.reckon.utils.OnIngredientItemSelected
-import kotlinx.android.synthetic.main.item_ingredients.view.*
 import org.jetbrains.anko.sdk27.coroutines.onCheckedChange
 
 class IngredientsAdapter(
