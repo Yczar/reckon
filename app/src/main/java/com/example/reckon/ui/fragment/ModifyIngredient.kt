@@ -2,14 +2,15 @@ package com.example.reckon.ui.fragment
 
 
 import android.os.Bundle
-
-import androidx.fragment.app.Fragment
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.R
+import com.example.reckon.adapter.IngredientsAdapter
+import com.example.reckon.utils.ToolbarTitleListener
 
 
 /**
@@ -21,7 +22,21 @@ class ModifyIngredient : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_modify_ingredient, container, false)
+        val view = inflater.inflate(R.layout.fragment_modify_ingredient, container, false)
+
+        //Added null value for titleString -*Fave
+        (activity as ToolbarTitleListener).updateTitle(R.string.modify_ingredients, null)
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.modify_fragment_recycler)
+
+        recyclerView.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context!!)
+        }
+
+
+
+        return view
     }
 
 }// Required empty public constructor

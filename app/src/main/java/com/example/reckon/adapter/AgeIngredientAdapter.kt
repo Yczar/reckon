@@ -3,13 +3,16 @@ package com.example.reckon.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.R
 import com.example.reckon.data_model.AgeRange
 import com.example.reckon.utils.OnAgeExpandListener
+import com.example.reckon.utils.OnIngredientItemSelected
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.item_age_ingredient.view.*
+import org.jetbrains.anko.sdk27.coroutines.onCheckedChange
 
 open class AgeIngredientAdapter (
         query: Query,
@@ -23,6 +26,7 @@ open class AgeIngredientAdapter (
 
     override fun onBindViewHolder(holder: AgeIngredientHolder, position: Int) {
         holder.bind(getSnapshot(position), listener)
+
     }
 
 }

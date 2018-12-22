@@ -10,6 +10,7 @@ import androidx.navigation.Navigation
 import com.example.reckon.BaseActivity
 import com.example.reckon.R
 import com.example.reckon.utils.OnLiveStockItemSelectedListener
+import com.example.reckon.utils.PrefManager
 import com.example.reckon.utils.ToolbarTitleListener
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
@@ -30,7 +31,9 @@ class Fish : Fragment(), OnLiveStockItemSelectedListener {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as ToolbarTitleListener).updateTitle(R.string.ls_aquatic)
+
+        //Made the string parameter null -*Fave
+        (activity as ToolbarTitleListener).updateTitle(R.string.ls_aquatic, null)
 
         baseActivity = BaseActivity()
         db = FirebaseFirestore.getInstance()
@@ -59,6 +62,10 @@ class Fish : Fragment(), OnLiveStockItemSelectedListener {
     }
 
     override fun onLiveStockSelected(livestock: DocumentSnapshot) {
+
+        //Wrote "Fish" to SharedPreferences - *Fave
+        PrefManager(context!!).writeSelectedLiveStockToSP(PrefManager.FISH_LIVE_STOCK)
+
         val id = livestock.id
         val docId = FishDirections.ActionAquaticMenuToAge().setId("${baseActivity.aquaticCollection}/$id")
         Navigation.findNavController(this.view!!).navigate(docId)
