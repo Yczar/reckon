@@ -9,11 +9,16 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.R
+import com.example.reckon.adapter.ModifyIngredientAdapter
+import com.example.reckon.utils.PrefManager
 import com.example.reckon.utils.ToolbarTitleListener
+import kotlinx.android.synthetic.main.fragment_modify_ingredient.*
 import kotlinx.android.synthetic.main.fragment_totals.*
 
 class ModifyIngredient : Fragment() {
 
+    lateinit var modifyIngredientAdapter: ModifyIngredientAdapter
+    lateinit var manager : PrefManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -30,6 +35,11 @@ class ModifyIngredient : Fragment() {
         recyclerView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context!!)
+
+            modifyIngredientAdapter = ModifyIngredientAdapter(manager.getIngredientsValuesFromSP() as Map<String, Int>)
+
+            this@ModifyIngredient.modify_fragment_recycler.layoutManager = LinearLayoutManager(context)
+            this@ModifyIngredient.modify_fragment_recycler.adapter = modifyIngredientAdapter
         }
 
         et_total_price.setText(R.string.naira_sign)

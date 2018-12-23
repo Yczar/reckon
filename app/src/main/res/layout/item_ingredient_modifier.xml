@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/tv_user_user_name"
+            android:id="@+id/tv_ingredient_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -22,7 +22,7 @@
 
         <include
             android:id="@+id/horizontal_divider"
-            android:layout_below="@+id/tv_user_user_name"
+            android:layout_below="@+id/tv_ingredient_name"
             layout="@layout/include_horzontal_divider"
             android:layout_height="1dp"
             android:layout_width="match_parent"/>
