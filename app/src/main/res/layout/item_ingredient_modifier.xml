@@ -28,48 +28,51 @@
             android:layout_width="match_parent"/>
 
         <LinearLayout
+            android:layout_below="@id/horizontal_divider"
+            android:padding="@dimen/four_dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/horizontal_divider">
+            android:weightSum="2"
+            android:layout_height="wrap_content">
 
             <!--style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
             <com.google.android.material.textfield.TextInputLayout
-
-                android:id="@+id/til_kg"
-                android:layout_width="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:hint="Kg"
+                android:hint="DCP (%)"
                 app:hintEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_kg"
-                    android:layout_width="wrap_content"
+                    android:drawableRight="@drawable/ic_percent"
+                    android:drawablePadding="@dimen/four_dp"
+                    android:id="@+id/et_dcp"
+                    android:layout_width="match_parent"
+                    android:cursorVisible="false"
+                    android:focusable="false"
                     android:layout_height="wrap_content"
-                    android:inputType="number"/>
+                    android:inputType="none"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:layout_gravity="center"
-                android:id="@+id/tv_user_mail"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="Kg" />
+                android:hint="Price"
+                app:hintEnabled="true">
 
-            <include
-                android:id="@+id/horizontal_divider"
-                layout="@layout/include_vertical_divider" />
-
-            <TextView
-                android:layout_gravity="center"
-                android:id="@+id/tv_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="@string/naira_sign" />
-
+                <com.google.android.material.textfield.TextInputEditText
+                    android:drawableLeft="@drawable/ic_naira"
+                    android:drawablePadding="@dimen/four_dp"
+                    android:id="@+id/et_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:inputType="none"/>
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
-
     </RelativeLayout>
 </com.google.android.material.card.MaterialCardView>

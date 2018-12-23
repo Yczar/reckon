@@ -16,14 +16,12 @@ import com.example.reckon.adapter.AgeIngredientAdapter
 import com.example.reckon.utils.OnAgeExpandListener
 import com.example.reckon.utils.PrefManager
 import com.example.reckon.utils.ToolbarTitleListener
-import com.google.android.material.card.MaterialCardView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.fragment_age.*
-import kotlinx.android.synthetic.main.fragment_totals.*
 import org.jetbrains.anko.support.v4.find
 
 class Age : Fragment(), OnAgeExpandListener {
@@ -56,47 +54,20 @@ class Age : Fragment(), OnAgeExpandListener {
 
         db = FirebaseFirestore.getInstance()
         query = db.collection("$ARG_ID/${baseActivity.ageCollection}")
-<<<<<<< HEAD
-        Log.d("ccccccc", "$ARG_ID/${baseActivity.ageCollection}")
-        getLiveStocksAge(card, rv_age, query)
-=======
-        Log.d(Age::class.java.simpleName, "$ARG_ID/${baseActivity.ageCollection}")
+
         getLiveStocksAge(tv, rv_age, query)
->>>>>>> develop
     }
 
-    fun getLiveStocksAge(
-            ll: MaterialCardView,
+    private fun getLiveStocksAge(
+            emptyView: TextView,
             rv: RecyclerView,
             type: Query) {
         adapter = object : AgeIngredientAdapter(type, this) {
             override fun onDataChanged() {
                 if(itemCount != 0){
-                    ll.visibility = View.VISIBLE
-                    rv.visibility = View.GONE
-
-                    /*et_total_dcp.isFocused
-
-                    et_total_dcp.isActivated =true
-
-                    et_total_price.isActivated =true*/
-                    /*et_total_price.setText(R.string.naira_sign)*/
-
-                    et_total_price.setText(R.string.naira_sign)
-                    et_total_dcp.setText(R.string.naira_sign)
+                    emptyView.visibility = View.GONE
+                    rv.visibility = View.VISIBLE
                 }
-                /*val rootRef = FirebaseFirestore.getInstance()
-                val codesRef = rootRef.collection("$ARG_ID/${baseActivity.ageCollection}").document("NgrvrSjyMOWN33BkDpB2")
-                codesRef.get().addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        val list = ArrayList<String>()
-                        val map = it.result!!.data
-                        for ((key) in map!!) {
-                            list.add(key)
-                            Log.d(TAG, "The Key is: $key")
-                        }
-                    }
-                }*/
             }
 
             override fun onError(e: FirebaseFirestoreException) {
@@ -123,7 +94,7 @@ class Age : Fragment(), OnAgeExpandListener {
 
     override fun onLiveStockAgeSelected(ingredients: Map<String, Any>) {
 
-       //Writing the map values and keys to SharedPreferences -*Fave
-       PrefManager(context!!).writeMapValuesToPrefs(ingredients)
+        //Writing the map values and keys to SharedPreferences -*Fave
+        PrefManager(context!!).writeMapValuesToPrefs(ingredients)
     }
 }

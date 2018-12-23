@@ -34,11 +34,11 @@
     <string name="ls_poultry">Poultry</string>
 
     <string name="ls_age_selector">Select Age</string>
-<<<<<<< HEAD
 
     <string name="naira_sign">\u20A6</string>
-=======
+
     <string name="modify_ingredients">Modify Ingredients</string>
     <string name="done">DONE</string>
->>>>>>> develop
+    <string name="refresh">Refresh</string>
+    >>>>>>> develop
 </resources>

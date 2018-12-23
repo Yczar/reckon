@@ -33,7 +33,6 @@ public class SelectIngredient extends Fragment implements OnIngredientItemSelect
     List<String> listOfIngredient = new ArrayList<>();
     private PrefManager manager;
 
-
     public SelectIngredient() {
         // Required empty public constructor
     }
