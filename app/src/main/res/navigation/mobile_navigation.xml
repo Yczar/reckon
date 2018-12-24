@@ -41,16 +41,14 @@
             app:argType="string"
             android:defaultValue="id" />
         <action
-            android:id="@+id/action_age_to_modifyIngredient"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:destination="@id/modifyIngredient" />
+            android:id="@+id/action_age_to_selectIngredient"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:destination="@id/selectIngredient" />
     </fragment>
     <fragment
-        android:id="@+id/modifyIngredient"
-        android:name="com.example.reckon.ui.fragment.ModifyIngredient"
-        android:label="fragment_modify_ingredient"
-        tools:layout="@layout/fragment_modify_ingredient" />
+        android:id="@+id/selectIngredient"
+        android:name="com.example.reckon.ui.fragment.SelectIngredient"
+        android:label="fragment_select_ingredient"
+        tools:layout="@layout/fragment_select_ingredient" />
 </navigation>

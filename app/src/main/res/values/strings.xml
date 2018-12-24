@@ -36,4 +36,7 @@
     <string name="ls_age_selector">Select Age</string>
     <string name="modify_ingredients">Modify Ingredients</string>
     <string name="done">DONE</string>
+    <string name="dialog_frag_instructions">The best size in grams for each ingredient has already been put but you\'re free to modify as desired.</string>
+    <string name="label">Label</string>
+    <string name="qty_in_grams">Qty in grams</string>
 </resources>

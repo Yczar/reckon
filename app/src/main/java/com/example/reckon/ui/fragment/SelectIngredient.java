@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.reckon.R;
 import com.example.reckon.adapter.IngredientsAdapter;
+import com.example.reckon.ui.ModifyIngredientDialogFragment;
 import com.example.reckon.utils.OnIngredientItemSelected;
 import com.example.reckon.utils.PrefManager;
 import com.example.reckon.utils.ToolbarTitleListener;
@@ -20,6 +22,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -64,6 +67,7 @@ public class SelectIngredient extends Fragment implements OnIngredientItemSelect
         View view = inflater.inflate(R.layout
                 .fragment_select_ingredient, container, false);
 
+
         mRecyclerView = view.findViewById(R.id.recycler_view);
         mIngredientsAdapter = new IngredientsAdapter(this, manager.getIngredientsValuesFromSP());
 
@@ -72,6 +76,17 @@ public class SelectIngredient extends Fragment implements OnIngredientItemSelect
         //Added the LayoutManager -*Fave
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mIngredientsAdapter);
+
+        final FragmentManager fragmentManager = getFragmentManager();
+
+        Button doneBtn = view.findViewById(R.id.selected_ingrdient_done_btn);
+        doneBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ModifyIngredientDialogFragment dialogFragment = new ModifyIngredientDialogFragment();
+                dialogFragment.show(fragmentManager, "fragmentTag");
+            }
+        });
         return view;
     }
 

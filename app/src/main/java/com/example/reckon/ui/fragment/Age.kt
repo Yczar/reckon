@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.BaseActivity
@@ -16,6 +17,7 @@ import com.example.reckon.adapter.AgeIngredientAdapter
 import com.example.reckon.utils.OnAgeExpandListener
 import com.example.reckon.utils.PrefManager
 import com.example.reckon.utils.ToolbarTitleListener
+import com.example.reckon.utils.init
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
@@ -86,7 +88,7 @@ class Age : Fragment(), OnAgeExpandListener {
 
             }
         }
-        rv.layoutManager = LinearLayoutManager(context)
+        rv.init(context!!)
         rv.adapter = adapter
     }
     //Setup fire store
@@ -107,5 +109,8 @@ class Age : Fragment(), OnAgeExpandListener {
 
        //Writing the map values and keys to SharedPreferences -*Fave
        PrefManager(context!!).writeMapValuesToPrefs(ingredients)
+
+        //Navigating to the select ingredient fragment
+        Navigation.findNavController(this.view!!).navigate(AgeDirections.ActionAgeToSelectIngredient())
     }
 }

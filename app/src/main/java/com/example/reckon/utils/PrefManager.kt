@@ -3,6 +3,8 @@ package com.example.reckon.utils
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.BaseActivity
 import com.example.reckon.R
 import com.example.reckon.ui.activity.AppEntryPoint
@@ -25,6 +27,8 @@ class PrefManager(var context: Context) {
 
         const val FISH_LIVE_STOCK = "Fish"
         const val POULTY_LIVE_STOCK = "Poultry"
+
+        const val modifyDialogFragTag = "dialogTag"
     }
 
     private fun getSp() {
@@ -89,4 +93,9 @@ class PrefManager(var context: Context) {
     fun getSelectedLiveStockToSP(): String?{
         return getLiveStockPrefs().getString(LIVESTOCK_KEY, "")
     }
+}
+
+fun RecyclerView.init(context: Context){
+    this.setHasFixedSize(true)
+    this.layoutManager = LinearLayoutManager(context)
 }

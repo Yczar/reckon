@@ -25,3 +25,7 @@ interface OnIngredientItemSelected{
 
     fun onItemDeSelected(ingredient: String)
 }
+
+interface OnModifyDialogDoneButtonClicked{
+    fun onDoneButtonClicked()
+}

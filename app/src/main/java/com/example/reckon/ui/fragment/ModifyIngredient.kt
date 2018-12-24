@@ -11,12 +11,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.R
 import com.example.reckon.adapter.IngredientsAdapter
 import com.example.reckon.utils.ToolbarTitleListener
+import com.example.reckon.utils.init
 
 
 /**
  * A simple [Fragment] subclass.
  */
 class ModifyIngredient : Fragment() {
+    //
+    //
+    //
+    //
+    //This fragment has been replaced with the ModifyIngredientDialogFragment class
+    //
+    //
+    //
+    //
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -28,13 +38,7 @@ class ModifyIngredient : Fragment() {
         (activity as ToolbarTitleListener).updateTitle(R.string.modify_ingredients, null)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.modify_fragment_recycler)
-
-        recyclerView.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(context!!)
-        }
-
-
+        recyclerView.init(context!!)
 
         return view
     }
