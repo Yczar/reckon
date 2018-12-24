@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.BaseActivity
@@ -17,7 +16,6 @@ import com.example.reckon.adapter.AgeIngredientAdapter
 import com.example.reckon.utils.OnAgeExpandListener
 import com.example.reckon.utils.PrefManager
 import com.example.reckon.utils.ToolbarTitleListener
-import com.example.reckon.utils.init
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
@@ -56,31 +54,20 @@ class Age : Fragment(), OnAgeExpandListener {
 
         db = FirebaseFirestore.getInstance()
         query = db.collection("$ARG_ID/${baseActivity.ageCollection}")
-        Log.d(Age::class.java.simpleName, "$ARG_ID/${baseActivity.ageCollection}")
+
         getLiveStocksAge(tv, rv_age, query)
     }
 
-    fun getLiveStocksAge(
-            ll: TextView,
+    private fun getLiveStocksAge(
+            emptyView: TextView,
             rv: RecyclerView,
             type: Query) {
         adapter = object : AgeIngredientAdapter(type, this) {
             override fun onDataChanged() {
                 if(itemCount != 0){
+                    emptyView.visibility = View.GONE
                     rv.visibility = View.VISIBLE
                 }
-                /*val rootRef = FirebaseFirestore.getInstance()
-                val codesRef = rootRef.collection("$ARG_ID/${baseActivity.ageCollection}").document("NgrvrSjyMOWN33BkDpB2")
-                codesRef.get().addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        val list = ArrayList<String>()
-                        val map = it.result!!.data
-                        for ((key) in map!!) {
-                            list.add(key)
-                            Log.d(TAG, "The Key is: $key")
-                        }
-                    }
-                }*/
             }
 
             override fun onError(e: FirebaseFirestoreException) {
@@ -88,7 +75,7 @@ class Age : Fragment(), OnAgeExpandListener {
 
             }
         }
-        rv.init(context!!)
+        rv.layoutManager = LinearLayoutManager(context)
         rv.adapter = adapter
     }
     //Setup fire store
@@ -107,10 +94,7 @@ class Age : Fragment(), OnAgeExpandListener {
 
     override fun onLiveStockAgeSelected(ingredients: Map<String, Any>) {
 
-       //Writing the map values and keys to SharedPreferences -*Fave
-       PrefManager(context!!).writeMapValuesToPrefs(ingredients)
-
-        //Navigating to the select ingredient fragment
-        Navigation.findNavController(this.view!!).navigate(AgeDirections.ActionAgeToSelectIngredient())
+        //Writing the map values and keys to SharedPreferences -*Fave
+        PrefManager(context!!).writeMapValuesToPrefs(ingredients)
     }
 }

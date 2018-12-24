@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="4dp"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="8dp"
+    android:id="@+id/card"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".ui.fragment.Totals">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:padding="@dimen/four_dp"
+            android:id="@+id/ll"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:weightSum="2"
+            android:layout_height="wrap_content">
+
+            <!--style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/total_dcp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="DCP (%)"
+                app:hintEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:drawableRight="@drawable/ic_percent"
+                    android:drawablePadding="@dimen/four_dp"
+                    android:id="@+id/et_total_dcp"
+                    android:layout_width="match_parent"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/total_price"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:hint="Price"
+                app:hintEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:drawableLeft="@drawable/ic_naira"
+                    android:drawablePadding="@dimen/four_dp"
+                    android:id="@+id/et_total_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:inputType="none"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_below="@+id/ll"
+            android:background="@drawable/remark_green"
+            android:padding="@dimen/eight_dp"
+            android:gravity="center"
+            android:text="Remark"
+            android:textColor="@color/white"
+            android:textSize="@dimen/twenty_four_sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -4,7 +4,7 @@
     <string name="pref_key">My Key</string>
 
     <!--********************-->
-            <!--Titles-->
+    <!--Titles-->
     <!--********************-->
     <string name="live_stock_picker">Picker</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -12,7 +12,7 @@
     <string name="search">Search</string>
 
     <!--********************-->
-        <!--On Boarding-->
+    <!--On Boarding-->
     <!--********************-->
     <string name="skip">Skip</string>
     <string name="next">Next</string>
@@ -34,9 +34,11 @@
     <string name="ls_poultry">Poultry</string>
 
     <string name="ls_age_selector">Select Age</string>
+
+    <string name="naira_sign">\u20A6</string>
+
     <string name="modify_ingredients">Modify Ingredients</string>
     <string name="done">DONE</string>
-    <string name="dialog_frag_instructions">The best size in grams for each ingredient has already been put but you\'re free to modify as desired.</string>
-    <string name="label">Label</string>
-    <string name="qty_in_grams">Qty in grams</string>
+    <string name="refresh">Refresh</string>
+    >>>>>>> develop
 </resources>
