@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.BaseActivity
 import com.example.reckon.R
-import com.example.reckon.adapter.AgeIngredientAdapter
+import com.example.reckon.adapter.AgeAdapter
 import com.example.reckon.utils.OnAgeExpandListener
 import com.example.reckon.utils.PrefManager
 import com.example.reckon.utils.ToolbarTitleListener
@@ -31,7 +31,7 @@ class Age : Fragment(), OnAgeExpandListener {
 
     lateinit var db: FirebaseFirestore
     lateinit var query: Query
-    lateinit var adapter: AgeIngredientAdapter
+    lateinit var adapter: AgeAdapter
     lateinit var baseActivity: BaseActivity
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -63,7 +63,7 @@ class Age : Fragment(), OnAgeExpandListener {
             emptyView: TextView,
             rv: RecyclerView,
             type: Query) {
-        adapter = object : AgeIngredientAdapter(type, this) {
+        adapter = object : AgeAdapter(type, this) {
             override fun onDataChanged() {
                 if(itemCount != 0){
                     emptyView.visibility = View.GONE

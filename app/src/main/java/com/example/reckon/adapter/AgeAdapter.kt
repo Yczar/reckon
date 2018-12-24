@@ -3,35 +3,32 @@ package com.example.reckon.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.R
 import com.example.reckon.data_model.AgeRange
 import com.example.reckon.utils.OnAgeExpandListener
-import com.example.reckon.utils.OnIngredientItemSelected
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
-import kotlinx.android.synthetic.main.item_age_ingredient.view.*
-import org.jetbrains.anko.sdk27.coroutines.onCheckedChange
+import kotlinx.android.synthetic.main.item_age_range.view.*
 
-open class AgeIngredientAdapter (
+open class AgeAdapter (
         query: Query,
         private val listener : OnAgeExpandListener) :
-        FirestoreAdapter<AgeIngredientHolder>(query){
+        FirestoreAdapter<AgeHolder>(query){
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AgeIngredientHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_age_ingredient, parent, false)
-        return AgeIngredientHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AgeHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_age_range, parent, false)
+        return AgeHolder(view)
     }
 
-    override fun onBindViewHolder(holder: AgeIngredientHolder, position: Int) {
+    override fun onBindViewHolder(holder: AgeHolder, position: Int) {
         holder.bind(getSnapshot(position), listener)
 
     }
 
 }
 
-class AgeIngredientHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+class AgeHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
     fun bind(
             snapshot: DocumentSnapshot,
             listener: OnAgeExpandListener){

@@ -40,8 +40,10 @@
     <string name="modify_ingredients">Modify Ingredients</string>
     <string name="done">DONE</string>
     <string name="refresh">Refresh</string>
+
     <string name="the_best_size_of_each_ingredient_has_already_been_put_but_you_re_free_to_modify_it_as_desired">The best size of each ingredient has already been put but you\'re free to modify it as desired.</string>
     <string name="label">Label</string>
     <string name="qty_in_grams">Qty in grams</string>
-    >>>>>>> develop
+
+    <string name="dialog_frag_instructions">Frag</string>
 </resources>
