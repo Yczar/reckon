@@ -42,7 +42,7 @@ class AgeIngredientHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
         //on item clicked
         itemView.setOnClickListener{
-//            listener.onLiveStockAgeSelected(livestockAge.ingredients!!)
+            listener.onLiveStockAgeSelected(livestockAge.ingredients!!)
         }
         //show ingredient for this particular age
         /*val ingredients = livestockAge.ingredients

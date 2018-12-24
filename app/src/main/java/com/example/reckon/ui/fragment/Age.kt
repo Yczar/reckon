@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.BaseActivity
@@ -96,5 +97,8 @@ class Age : Fragment(), OnAgeExpandListener {
 
         //Writing the map values and keys to SharedPreferences -*Fave
         PrefManager(context!!).writeMapValuesToPrefs(ingredients)
+
+        //Navigating to SelectIngredient finally
+        Navigation.findNavController(this.view!!).navigate(R.id.action_age_to_selectIngredient)
     }
 }

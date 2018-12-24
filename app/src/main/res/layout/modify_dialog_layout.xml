@@ -17,7 +17,7 @@
             android:textAlignment="center"
             android:layout_marginTop="10dp"
             android:textColor="@android:color/black"
-            android:text="@string/dialog_frag_instructions"/>
+            android:text="@string/the_best_size_of_each_ingredient_has_already_been_put_but_you_re_free_to_modify_it_as_desired"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"

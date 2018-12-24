@@ -36,6 +36,7 @@ class ModifyIngredientDialogFragment: DialogFragment() {
         modify_dialog_recycler.init(context!!)
 
 
+
         return view
     }
 
