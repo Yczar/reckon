@@ -12,7 +12,7 @@ import org.jetbrains.anko.sdk27.coroutines.onCheckedChange
 
 class IngredientsAdapter(
         val onIngredientItemSelected: OnIngredientItemSelected,
-        val ingredients : Map<String, *>):
+        val ingredients : Map<String, Any>):
         RecyclerView.Adapter<IngredientsAdapter.IngredientHolder>() {
 
     override fun getItemCount(): Int {
@@ -28,12 +28,14 @@ class IngredientsAdapter(
     override fun onBindViewHolder(holder: IngredientHolder, position: Int) {
 
         val key  = ingredients.keys.toTypedArray()
+        val value = ingredients.values.toTypedArray()
         holder.bind(key[position])
 
         val checkBox = holder.itemView.findViewById<CheckBox>(R.id.item_ingredient_checkbox)
 
         checkBox.onCheckedChange { buttonView, isChecked ->
-            if (isChecked) onIngredientItemSelected.onItemSelected(key[position]) else onIngredientItemSelected.onItemDeSelected(key[position])
+            if (isChecked) onIngredientItemSelected.onItemSelected(key[position], value[position] as Double)
+            else onIngredientItemSelected.onItemDeSelected(key[position])
         }
     }
 

@@ -6,12 +6,14 @@ import android.view.*
 import android.widget.Toast
 import android.widget.Toast.makeText
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.R.attr.layoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.R
 import com.example.reckon.adapter.ModifyIngredientAdapter
 import com.example.reckon.utils.PrefManager
 import com.example.reckon.utils.ToolbarTitleListener
+import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.fragment_modify_ingredient.*
 import kotlinx.android.synthetic.main.fragment_totals.*
 
@@ -25,14 +27,20 @@ class ModifyIngredient : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_modify_ingredient, container, false)
 
+        manager = PrefManager(view.context)
         setHasOptionsMenu(true)
 
         //Added null value for titleString -*Fave
         (activity as ToolbarTitleListener).updateTitle(R.string.modify_ingredients, null)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.modify_fragment_recycler)
+        modifyIngredientAdapter = ModifyIngredientAdapter(manager.getSelectedIngredientsValuesFromSP() as Map<String, Int>)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = modifyIngredientAdapter
 
-        recyclerView.apply {
+
+        /*recyclerView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context!!)
 
@@ -40,10 +48,12 @@ class ModifyIngredient : Fragment() {
 
             this@ModifyIngredient.modify_fragment_recycler.layoutManager = LinearLayoutManager(context)
             this@ModifyIngredient.modify_fragment_recycler.adapter = modifyIngredientAdapter
-        }
+        }*/
+        val totalPrice = view.findViewById<TextInputEditText>(R.id.et_total_price)
+        val totalDcp = view.findViewById<TextInputEditText>(R.id.et_total_dcp)
 
-        et_total_price.setText(R.string.naira_sign)
-        et_total_dcp.setText(R.string.naira_sign)
+        totalPrice.setText("0")
+        totalDcp.setText("0")
 
         return view
     }

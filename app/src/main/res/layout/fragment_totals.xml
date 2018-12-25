@@ -28,7 +28,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:hint="DCP (%)"
+                android:hint="Total DCP (%)"
                 app:hintEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -39,7 +39,8 @@
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:layout_height="wrap_content"
-                    android:inputType="none"/>
+                    android:inputType="none"
+                    android:drawableEnd="@drawable/ic_percent" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -48,7 +49,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:hint="Price"
+                android:hint="Total Price"
                 app:hintEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -59,7 +60,8 @@
                     android:layout_height="wrap_content"
                     android:cursorVisible="false"
                     android:focusable="false"
-                    android:inputType="none"/>
+                    android:inputType="none"
+                    android:drawableStart="@drawable/ic_naira" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>

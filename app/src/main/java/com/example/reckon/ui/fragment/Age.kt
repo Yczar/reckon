@@ -93,10 +93,12 @@ class Age : Fragment(), OnAgeExpandListener {
         adapter.startListening()
     }
 
-    override fun onLiveStockAgeSelected(ingredients: Map<String, Any>) {
-
+    override fun onLiveStockAgeSelected(ingredients: Map<String, Any>?) {
         //Writing the map values and keys to SharedPreferences -*Fave
-        PrefManager(context!!).writeMapValuesToPrefs(ingredients)
+        if (ingredients != null) {
+            PrefManager(context!!).writeMapValuesToPrefs(ingredients)
+        }
+
 
         //Navigating to SelectIngredient finally
         Navigation.findNavController(this.view!!).navigate(R.id.action_age_to_selectIngredient)

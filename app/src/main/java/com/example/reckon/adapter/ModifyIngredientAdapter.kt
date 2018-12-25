@@ -3,14 +3,17 @@ package com.example.reckon.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.R
+import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.item_ingredient_modifier.view.*
 
 class ModifyIngredientAdapter(
         val toModify : Map<String, Int>) : RecyclerView.Adapter<ModifyIngredientHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ModifyIngredientHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_ingredient_modifier, parent, false)
+        val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_ingredient_modifier, parent, false)
         return ModifyIngredientHolder(view)
     }
 
@@ -19,10 +22,10 @@ class ModifyIngredientAdapter(
     }
 
     override fun onBindViewHolder(holder: ModifyIngredientHolder, position: Int) {
-        val key = toModify.keys.toTypedArray()
-        val value = toModify.values.toTypedArray()
+        val key = toModify.keys
+        val value = toModify.values
 
-        holder.bind(key = key[position], value = value[position])
+        holder.bind(key = key.elementAt(position), value = value.elementAt(position))
     }
 }
 
@@ -31,7 +34,8 @@ class ModifyIngredientHolder(itemView : View) : RecyclerView.ViewHolder(itemView
             key: String,
             value: Int
     ){
-        itemView.tv_ingredient_name.text = key
-        itemView.et_dcp.setText(value)
+        itemView.findViewById<TextView>(R.id.tv_ingredient_name).text = key
+        val sizePerKg = itemView.findViewById<TextInputEditText>(R.id.et_dcp)
+        sizePerKg.setText(value.toString())
     }
 }

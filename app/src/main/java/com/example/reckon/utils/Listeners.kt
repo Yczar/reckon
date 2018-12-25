@@ -2,7 +2,6 @@ package com.example.reckon.utils
 
 import androidx.annotation.StringRes
 import com.google.firebase.firestore.DocumentSnapshot
-import java.util.*
 
 interface ToolbarTitleListener {
 
@@ -17,11 +16,11 @@ interface OnLiveStockItemSelectedListener{
 
 interface OnAgeExpandListener{
     //Change the value type from Objects to Any -*Fave
-    fun onLiveStockAgeSelected(ingredients : Map<String, Any>)
+    fun onLiveStockAgeSelected(ingredients: Map<String, Any>?)
 }
 
 interface OnIngredientItemSelected{
-    fun onItemSelected(ingredient: String)
+    fun onItemSelected(ingredient: String, value: Double)
 
     fun onItemDeSelected(ingredient: String)
 }

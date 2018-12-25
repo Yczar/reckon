@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.reckon.R
@@ -20,8 +21,10 @@ class ModifyIngredientDialogFragment: DialogFragment() {
     lateinit var listener: OnModifyDialogDoneButtonClicked
     lateinit var adapter: ModifyIngredientsDialogEditTextAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.modify_dialog_layout, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.modify_dialog_layout,
+                container, false)
 
        if(targetFragment is OnModifyDialogDoneButtonClicked){
            listener = targetFragment as OnModifyDialogDoneButtonClicked
@@ -29,7 +32,8 @@ class ModifyIngredientDialogFragment: DialogFragment() {
            throw IllegalStateException("Target Fragment must be implement OnModifyDialogDoneButtonClicked")
        }
 
-        modify_dialog_done_btn.setOnClickListener {
+        val modifyDialogButton = view.findViewById<Button>(R.id.modify_dialog_done_btn)
+        modifyDialogButton.setOnClickListener {
             listener.onDoneButtonClicked()
         }
 

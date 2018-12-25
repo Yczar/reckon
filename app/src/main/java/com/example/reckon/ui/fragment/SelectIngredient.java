@@ -6,23 +6,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.reckon.R;
 import com.example.reckon.adapter.IngredientsAdapter;
 import com.example.reckon.ui.ModifyIngredientDialogFragment;
 import com.example.reckon.utils.OnIngredientItemSelected;
+import com.example.reckon.utils.OnModifyDialogDoneButtonClicked;
 import com.example.reckon.utils.PrefManager;
 import com.example.reckon.utils.ToolbarTitleListener;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,10 +35,10 @@ import androidx.recyclerview.widget.RecyclerView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SelectIngredient extends Fragment implements OnIngredientItemSelected {
-    RecyclerView mRecyclerView;
-    IngredientsAdapter mIngredientsAdapter;
-    List<String> listOfIngredient = new ArrayList<>();
+public class SelectIngredient extends Fragment implements OnIngredientItemSelected{
+    private RecyclerView mRecyclerView;
+    private IngredientsAdapter mIngredientsAdapter;
+    private Map<String, Double> listOfIngredient = new HashMap<>();
     private PrefManager manager;
 
     public SelectIngredient() {
@@ -52,7 +57,7 @@ public class SelectIngredient extends Fragment implements OnIngredientItemSelect
         super.onViewCreated(view, savedInstanceState);
 
         //Code to update the update the toolbar's title - *Fave
-         manager = new PrefManager(getContext());
+         //manager = new PrefManager(getContext());
 
         ToolbarTitleListener toolbarTitleListener = (ToolbarTitleListener)getActivity();
         toolbarTitleListener.updateTitle(null, manager.getSelectedLiveStockToSP());
@@ -67,8 +72,11 @@ public class SelectIngredient extends Fragment implements OnIngredientItemSelect
                 .fragment_select_ingredient, container, false);
 
 
+        manager = new PrefManager(view.getContext());
         mRecyclerView = view.findViewById(R.id.recycler_view);
-        mIngredientsAdapter = new IngredientsAdapter(this, manager.getIngredientsValuesFromSP());
+
+        mIngredientsAdapter = new IngredientsAdapter(this,
+                manager.getIngredientsValuesFromSP());
 
         mRecyclerView.setHasFixedSize(true);
 
@@ -76,24 +84,22 @@ public class SelectIngredient extends Fragment implements OnIngredientItemSelect
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mIngredientsAdapter);
 
-        final FragmentManager fragmentManager = getFragmentManager();
-
         Button doneBtn = view.findViewById(R.id.selected_ingrdient_done_btn);
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ModifyIngredientDialogFragment dialogFragment = new ModifyIngredientDialogFragment();
-                dialogFragment.show(fragmentManager, "fragmentTag");
+                manager.writeSelectedValuesToPrefs(listOfIngredient);
+                Navigation.findNavController(getView()).navigate(R.id.action_selectIngredient_to_modifyIngredients);
             }
         });
         return view;
     }
 
     @Override
-    public void onItemSelected(@NotNull String ingredient) {
+    public void onItemSelected(@NotNull String ingredient, double value) {
 
         //List of Ingredient to be passed to the ModifyIngredient fragment -*Fave
-        listOfIngredient.add(ingredient);
+        listOfIngredient.put(ingredient, value);
     }
 
     @Override

@@ -3,11 +3,14 @@ package com.example.reckon.utils
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.BaseActivity
 import com.example.reckon.R
 import com.example.reckon.ui.activity.AppEntryPoint
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class PrefManager(var context: Context) {
 
@@ -27,6 +30,8 @@ class PrefManager(var context: Context) {
 
         const val FISH_LIVE_STOCK = "Fish"
         const val POULTY_LIVE_STOCK = "Poultry"
+        const val INGREDIENTS = "ingredientsvalue"
+        const val SELECTED_INGREDIENTS = "selectedIngredients"
 
         const val modifyDialogFragTag = "dialogTag"
     }
@@ -67,18 +72,32 @@ class PrefManager(var context: Context) {
     fun writeMapValuesToPrefs(mapValuesAndKeys: Map<String ,Any>){
         val editor : SharedPreferences.Editor = getIngredientSp().edit()
 
-        val array = mapValuesAndKeys.keys.toTypedArray()
-        for(key in array){
-            //Both Key and Value are the same
-            editor.putString(key, key)
-        }
-        editor.apply()
+        val gson = Gson()
+        val json = gson.toJson(mapValuesAndKeys) // myObject - instance of MyObject
+        editor.putString(INGREDIENTS, json)
+        editor.commit()
+    }
+    fun writeSelectedValuesToPrefs(mapValuesAndKeys: Map<String ,Any>){
+        val editor : SharedPreferences.Editor = getIngredientSp().edit()
 
+        val gson = Gson()
+        val json = gson.toJson(mapValuesAndKeys) // myObject - instance of MyObject
+        editor.putString(SELECTED_INGREDIENTS, json)
+        editor.commit()
     }
 
     //Getting all the values for the Ingredient SharedPreferences -*Fave
-    fun getIngredientsValuesFromSP(): Map<String, *>{
-        return getIngredientSp().all
+    fun getIngredientsValuesFromSP(): Map<String, Any>{
+        val gson = Gson()
+        val json = getIngredientSp().getString(INGREDIENTS, "")
+        val type = object : TypeToken<Map<String, Any>>() {}.type
+        return gson.fromJson(json, type)
+    }
+    fun getSelectedIngredientsValuesFromSP(): Map<String, Any>{
+        val gson = Gson()
+        val json = getIngredientSp().getString(SELECTED_INGREDIENTS, "")
+        val type = object : TypeToken<Map<String, Any>>() {}.type
+        return gson.fromJson(json, type)
     }
 
     //Writing the selected livestock to its specified SP -*Fave

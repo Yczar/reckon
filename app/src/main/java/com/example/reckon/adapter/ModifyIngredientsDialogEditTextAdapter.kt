@@ -12,7 +12,8 @@ import com.example.reckon.R
 /**
  * Created by Big-Nosed Developer on the Edge of Infinity.
  */
-class ModifyIngredientsDialogEditTextAdapter(val context: Context, val lisOfIngredients: List<String>): RecyclerView.Adapter<ModifyIngredientsDialogEditTextAdapter.ModifyViewHolder>() {
+class ModifyIngredientsDialogEditTextAdapter(val context: Context,
+                                             val lisOfIngredients: List<String>): RecyclerView.Adapter<ModifyIngredientsDialogEditTextAdapter.ModifyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ModifyViewHolder = ModifyViewHolder(
             LayoutInflater.from(context).inflate(R.layout.modify_dialog_layout, parent, false)
