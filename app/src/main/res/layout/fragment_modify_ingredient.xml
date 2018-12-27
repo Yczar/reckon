@@ -4,10 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.fragment.ModifyIngredient"
     android:layout_width="match_parent"
-    android:layout_margin="@dimen/four_dp"
+    android:padding="@dimen/four_dp"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/layout_subtitle"
+        layout="@layout/include_subtitle"/>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@+id/layout_subtitle"
         android:layout_width="match_parent"
         tools:listitem="@layout/item_ingredient_modifier"
         android:id="@+id/modify_fragment_recycler"

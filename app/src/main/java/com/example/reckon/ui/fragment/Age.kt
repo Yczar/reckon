@@ -1,5 +1,6 @@
 package com.example.reckon.ui.fragment
 
+import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -14,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.BaseActivity
 import com.example.reckon.R
 import com.example.reckon.adapter.AgeAdapter
+import com.example.reckon.data_model.AgeRange
 import com.example.reckon.utils.OnAgeExpandListener
+import com.example.reckon.utils.OnIngredientItemSelected
 import com.example.reckon.utils.PrefManager
 import com.example.reckon.utils.ToolbarTitleListener
 import com.google.android.material.snackbar.Snackbar
@@ -24,8 +27,9 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.fragment_age.*
 import org.jetbrains.anko.support.v4.find
+import java.util.HashMap
 
-class Age : Fragment(), OnAgeExpandListener {
+class Age : Fragment(), OnAgeExpandListener{
 
     lateinit var ARG_ID: String
 
@@ -34,10 +38,16 @@ class Age : Fragment(), OnAgeExpandListener {
     lateinit var adapter: AgeAdapter
     lateinit var baseActivity: BaseActivity
 
+    private var manager: PrefManager? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_age, container, false)
+        val view = inflater.inflate(R.layout.fragment_age, container, false)
+
+        manager = PrefManager(view.context)
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -98,8 +108,6 @@ class Age : Fragment(), OnAgeExpandListener {
         if (ingredients != null) {
             PrefManager(context!!).writeMapValuesToPrefs(ingredients)
         }
-
-
         //Navigating to SelectIngredient finally
         Navigation.findNavController(this.view!!).navigate(R.id.action_age_to_selectIngredient)
     }

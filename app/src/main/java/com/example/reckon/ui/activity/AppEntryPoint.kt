@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.reckon.BaseActivity
@@ -79,6 +81,9 @@ class AppEntryPoint : BaseActivity(), ToolbarTitleListener{
             NavigationUI.setupWithNavController(it, navController)
         }
     }
+
+    override fun onSupportNavigateUp()
+            = findNavController(this, R.id.host_fragment).navigateUp()
 
     override fun onNavigateUp(): Boolean {
         return NavigationUI.navigateUp(drawerLayout,

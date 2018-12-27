@@ -1,21 +1,21 @@
 package com.example.reckon.ui.fragment
 
 
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import android.widget.Toast.makeText
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.R.attr.layoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.R
 import com.example.reckon.adapter.ModifyIngredientAdapter
 import com.example.reckon.utils.PrefManager
 import com.example.reckon.utils.ToolbarTitleListener
-import com.google.android.material.textfield.TextInputEditText
-import kotlinx.android.synthetic.main.fragment_modify_ingredient.*
-import kotlinx.android.synthetic.main.fragment_totals.*
+import kotlinx.android.synthetic.main.fragment_totals.view.*
+
 
 class ModifyIngredient : Fragment() {
 
@@ -24,36 +24,28 @@ class ModifyIngredient : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        setHasOptionsMenu(true)
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_modify_ingredient, container, false)
 
         manager = PrefManager(view.context)
-        setHasOptionsMenu(true)
 
         //Added null value for titleString -*Fave
         (activity as ToolbarTitleListener).updateTitle(R.string.modify_ingredients, null)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.modify_fragment_recycler)
-        modifyIngredientAdapter = ModifyIngredientAdapter(manager.getSelectedIngredientsValuesFromSP() as Map<String, Int>)
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = modifyIngredientAdapter
 
-
-        /*recyclerView.apply {
+        recyclerView.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context!!)
 
             modifyIngredientAdapter = ModifyIngredientAdapter(manager.getIngredientsValuesFromSP() as Map<String, Int>)
 
-            this@ModifyIngredient.modify_fragment_recycler.layoutManager = LinearLayoutManager(context)
-            this@ModifyIngredient.modify_fragment_recycler.adapter = modifyIngredientAdapter
-        }*/
-        val totalPrice = view.findViewById<TextInputEditText>(R.id.et_total_price)
-        val totalDcp = view.findViewById<TextInputEditText>(R.id.et_total_dcp)
-
-        totalPrice.setText("0")
-        totalDcp.setText("0")
+            layoutManager = LinearLayoutManager(context)
+            adapter = modifyIngredientAdapter
+        }
+        view.et_total_price.setText("0")
+        view.et_total_dcp.setText("0")
 
         return view
     }
@@ -65,7 +57,7 @@ class ModifyIngredient : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)
 
-        inflater!!.inflate(R.menu.main_menu, menu!!)
+        inflater!!.inflate(R.menu.menu_modify_ingredient, menu!!)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -75,5 +67,37 @@ class ModifyIngredient : Fragment() {
             R.id.menu_action_refresh -> refreshScreen()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        /*window.decorView.apply {
+            systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_FULLSCREEN
+        }*/
+    }
+
+    private fun showFullScreen() {
+        if (Build.VERSION.SDK_INT in 12..18) { // for lower api
+            val v = this.activity!!.window.decorView
+            v.systemUiVisibility = View.GONE
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            //for new api versions.
+            val decorView = this.activity!!.window.decorView// for fragment use getActivity().getWindow().getDecorView();
+            val uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+            decorView.systemUiVisibility = uiOptions
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+    override fun onResume() {
+        super.onResume()
+
+        /*activity!!.window.decorView.apply {
+            systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        }*/
     }
 }

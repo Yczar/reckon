@@ -35,6 +35,8 @@
 
     <string name="ls_age_selector">Select Age</string>
 
+    <string name="age_range">Age range:</string>
+
     <string name="naira_sign">\u20A6</string>
 
     <string name="modify_ingredients">Modify Ingredients</string>
@@ -46,4 +48,6 @@
     <string name="qty_in_grams">Qty in grams</string>
 
     <string name="dialog_frag_instructions">Frag</string>
+    <string name="price_kg">Price/Kg</string>
+    <string name="size_kg">SIZE (KG)</string>
 </resources>

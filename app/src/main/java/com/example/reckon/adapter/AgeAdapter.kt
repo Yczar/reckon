@@ -1,5 +1,7 @@
 package com.example.reckon.adapter
 
+import android.content.ContentValues
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,13 +9,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.R
 import com.example.reckon.data_model.AgeRange
 import com.example.reckon.utils.OnAgeExpandListener
+import com.example.reckon.utils.PrefManager
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.item_age_range.view.*
 
 open class AgeAdapter (
         query: Query,
-        private val listener : OnAgeExpandListener) :
+        private val listener : OnAgeExpandListener
+) :
         FirestoreAdapter<AgeHolder>(query){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AgeHolder {
@@ -23,15 +27,23 @@ open class AgeAdapter (
 
     override fun onBindViewHolder(holder: AgeHolder, position: Int) {
         holder.bind(getSnapshot(position), listener)
-
     }
+
+    /*override fun getItemCount(): Int {
+        return if (ingredients.isNotEmpty()){
+            ingredients.size
+        }else{
+            0
+        }
+    }*/
 
 }
 
 class AgeHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
     fun bind(
             snapshot: DocumentSnapshot,
-            listener: OnAgeExpandListener){
+            listener: OnAgeExpandListener
+    ){
         val livestockAge = snapshot.toObject(AgeRange::class.java) ?: return
 
         //Load Ages
@@ -40,13 +52,8 @@ class AgeHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         //on item clicked
         itemView.setOnClickListener{
             listener.onLiveStockAgeSelected(livestockAge.ingredients)
+
+            Log.d(ContentValues.TAG, "III: ${livestockAge.age_range}")
         }
-        //show ingredient for this particular age
-        /*val ingredients = livestockAge.ingredients
-        if (ingredients != null) {
-            for ((key, value) in ingredients) {
-                println("$key = $value")
-            }
-        }*/
     }
 }

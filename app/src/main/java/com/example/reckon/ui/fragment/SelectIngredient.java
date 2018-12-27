@@ -1,32 +1,31 @@
 package com.example.reckon.ui.fragment;
 
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.reckon.R;
 import com.example.reckon.adapter.IngredientsAdapter;
-import com.example.reckon.ui.ModifyIngredientDialogFragment;
 import com.example.reckon.utils.OnIngredientItemSelected;
-import com.example.reckon.utils.OnModifyDialogDoneButtonClicked;
 import com.example.reckon.utils.PrefManager;
 import com.example.reckon.utils.ToolbarTitleListener;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -56,8 +55,7 @@ public class SelectIngredient extends Fragment implements OnIngredientItemSelect
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //Code to update the update the toolbar's title - *Fave
-         //manager = new PrefManager(getContext());
+        setHasOptionsMenu(true);
 
         ToolbarTitleListener toolbarTitleListener = (ToolbarTitleListener)getActivity();
         toolbarTitleListener.updateTitle(null, manager.getSelectedLiveStockToSP());
@@ -84,14 +82,6 @@ public class SelectIngredient extends Fragment implements OnIngredientItemSelect
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mIngredientsAdapter);
 
-        Button doneBtn = view.findViewById(R.id.selected_ingrdient_done_btn);
-        doneBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                manager.writeSelectedValuesToPrefs(listOfIngredient);
-                Navigation.findNavController(getView()).navigate(R.id.action_selectIngredient_to_modifyIngredients);
-            }
-        });
         return view;
     }
 
@@ -105,5 +95,29 @@ public class SelectIngredient extends Fragment implements OnIngredientItemSelect
     @Override
     public void onItemDeSelected(@NotNull String ingredient) {
         listOfIngredient.remove(ingredient);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private void doneEditing(){
+        manager.writeSelectedValuesToPrefs(listOfIngredient);
+        Navigation.findNavController(Objects.requireNonNull(getView())).navigate(R.id.action_selectIngredient_to_modifyIngredients);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_select_ingredient, menu);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        switch (itemId){
+            case R.id.menu_action_done:
+                doneEditing();
+            default: return super.onOptionsItemSelected(item);
+        }
     }
 }
