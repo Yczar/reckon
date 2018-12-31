@@ -32,10 +32,11 @@ class IngredientsAdapter(
         holder.bind(key[position])
 
         val checkBox = holder.itemView.findViewById<CheckBox>(R.id.item_ingredient_checkbox)
+        checkBox.isChecked = true
 
         checkBox.onCheckedChange { buttonView, isChecked ->
             if (isChecked) onIngredientItemSelected.onItemSelected(key[position], value[position] as Double)
-            else onIngredientItemSelected.onItemDeSelected(key[position])
+            else onIngredientItemSelected.onItemDeSelected(key[position], value[position] as Double)
         }
     }
 

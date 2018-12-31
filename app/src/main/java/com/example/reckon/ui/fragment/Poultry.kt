@@ -2,6 +2,7 @@ package com.example.reckon.ui.fragment
 
 
 import android.os.Bundle
+import android.util.Log
 
 import androidx.fragment.app.Fragment
 
@@ -12,6 +13,7 @@ import androidx.navigation.Navigation
 import com.example.reckon.BaseActivity
 
 import com.example.reckon.R
+import com.example.reckon.data_model.LiveStockList
 import com.example.reckon.utils.OnLiveStockItemSelectedListener
 import com.example.reckon.utils.PrefManager
 import com.example.reckon.utils.ToolbarTitleListener
@@ -65,12 +67,14 @@ class Poultry : Fragment(), OnLiveStockItemSelectedListener {
         baseActivity.adapter.startListening()
     }
 
-    override fun onLiveStockSelected(livestock: DocumentSnapshot) {
+    override fun onLiveStockSelected(snapshot : DocumentSnapshot, livestock: LiveStockList) {
+
+        PrefManager(context!!).writeMySelectedLiveStockToSP(livestock)
 
         //Wrote "Fish" to SharedPreferences - *Fave
         PrefManager(context!!).writeSelectedLiveStockToSP(PrefManager.POULTY_LIVE_STOCK)
 
-        val id = livestock.id
+        val id = snapshot.id
         val docId =
                 PoultryDirections.ActionPoultryMenuToAge().setId("${baseActivity.poultryCollection}/$id")
         Navigation.findNavController(this.view!!).navigate(docId)

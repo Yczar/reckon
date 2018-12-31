@@ -51,7 +51,7 @@ class AgeHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
         //on item clicked
         itemView.setOnClickListener{
-            listener.onLiveStockAgeSelected(livestockAge.ingredients)
+            listener.onLiveStockAgeSelected(livestockAge)
 
             Log.d(ContentValues.TAG, "III: ${livestockAge.age_range}")
         }

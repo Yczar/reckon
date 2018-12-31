@@ -4,6 +4,7 @@ package com.example.reckon.ui.fragment
 import android.os.Build
 import android.os.Bundle
 import android.view.*
+import android.widget.TextView
 import android.widget.Toast
 import android.widget.Toast.makeText
 import androidx.annotation.RequiresApi
@@ -12,16 +13,30 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.R
 import com.example.reckon.adapter.ModifyIngredientAdapter
+import com.example.reckon.data_model.LiveStockList
+import com.example.reckon.utils.AfterIngValueModified
+import com.example.reckon.utils.FeedFormulation
 import com.example.reckon.utils.PrefManager
 import com.example.reckon.utils.ToolbarTitleListener
-import kotlinx.android.synthetic.main.fragment_totals.view.*
+import com.google.android.material.textfield.TextInputEditText
+import kotlinx.android.synthetic.main.fragment_totals.*
+import java.text.DecimalFormat
 
 
-class ModifyIngredient : Fragment() {
+class ModifyIngredient : Fragment(), AfterIngValueModified {
 
     lateinit var modifyIngredientAdapter: ModifyIngredientAdapter
     lateinit var manager : PrefManager
+    lateinit var ingredientsMap : MutableMap<String, Double>
+    lateinit var dcpValuesMap : MutableMap<String, Double>
+    lateinit var priceMap : MutableMap<String, Double>
+    lateinit var totalDCP : TextInputEditText
+    lateinit var totalPrice : TextInputEditText
+    private var feedSize : Double = 0.0
+    lateinit var selectedLivestock : LiveStockList
+    lateinit var remarkBtn : TextView
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         setHasOptionsMenu(true)
@@ -29,6 +44,12 @@ class ModifyIngredient : Fragment() {
         val view = inflater.inflate(R.layout.fragment_modify_ingredient, container, false)
 
         manager = PrefManager(view.context)
+        feedSize = manager.getFeedSizeValue()
+        ingredientsMap = manager.getSelectedIngredientsValuesFromSP() as MutableMap<String, Double>
+        dcpValuesMap = manager.getIngredientsDCPFromSP() as MutableMap<String, Double>
+        priceMap = manager.getIngredientsPriceFromSP() as MutableMap<String, Double>
+        selectedLivestock = manager.getSelectedLiveStockFromSP()
+        remarkBtn = view.findViewById(R.id.remark_btn)
 
         //Added null value for titleString -*Fave
         (activity as ToolbarTitleListener).updateTitle(R.string.modify_ingredients, null)
@@ -39,18 +60,57 @@ class ModifyIngredient : Fragment() {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context!!)
 
-            modifyIngredientAdapter = ModifyIngredientAdapter(manager.getIngredientsValuesFromSP() as Map<String, Int>)
+            modifyIngredientAdapter = ModifyIngredientAdapter(ingredientsMap,
+                    priceMap as Map<String, Int>,
+                    this@ModifyIngredient)
 
             layoutManager = LinearLayoutManager(context)
             adapter = modifyIngredientAdapter
         }
-        view.et_total_price.setText("0")
-        view.et_total_dcp.setText("0")
+        totalDCP = view.findViewById(R.id.et_total_dcp)
+        totalPrice = view.findViewById(R.id.et_total_price)
+        computePriceAndDCP()
 
         return view
     }
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+    override fun onValueModified(ingredient: String, value: Double) {
+        ingredientsMap[ingredient] = value
+        //TODO compute the DCP value and the total price. must be in the background
+        computePriceAndDCP()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+    fun computePriceAndDCP(){
+        val dcpAndPrice : List<Double> = FeedFormulation
+                .getTotalDCPandPrice(ingredientsMap, dcpValuesMap, priceMap, feedSize)
+
+        val formatter = DecimalFormat("#0.00")
+        val totalDcpValue = dcpAndPrice[0]
+        val totalDcpPrice = dcpAndPrice[1]
+        totalDCP.setText(formatter.format(totalDcpValue).toString())
+        totalPrice.setText(formatter.format(totalDcpPrice).toString())
+
+        if (totalDcpValue >= selectedLivestock.min_dcp!!
+                && totalDcpValue < selectedLivestock.min_dcp!! + 2.1){
+            //good
+            remarkBtn.background = resources.getDrawable(R.drawable.remark_green)
+            remarkBtn.text = "Very Good"
+        }else if (totalDcpValue < selectedLivestock.min_dcp!!){
+            //not good
+            remarkBtn.background = resources.getDrawable(R.drawable.remark_red)
+            remarkBtn.text = "Too Low"
+        }else if(totalDcpValue > selectedLivestock.min_dcp!! + 2.1){
+            //fair
+            remarkBtn.text = "Too High"
+            remarkBtn.background = resources.getDrawable(R.drawable.remark_yellow)
+        }
+    }
+
+
     private fun  refreshScreen(){
+        //TODO implemented this method to show recommended ingredients
         makeText(context, "Refreshed clicked", Toast.LENGTH_LONG).show()
     }
 

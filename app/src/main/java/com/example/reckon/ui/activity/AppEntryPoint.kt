@@ -13,7 +13,15 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.reckon.BaseActivity
 import com.example.reckon.R
+import com.example.reckon.data_model.AgeRange
+import com.example.reckon.data_model.IngredientsDCP
+import com.example.reckon.data_model.IngredientsPrice
+import com.example.reckon.utils.PrefManager
 import com.example.reckon.utils.ToolbarTitleListener
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.app_bar.view.*
 import kotlinx.android.synthetic.main.app_entry_point.*
@@ -23,6 +31,7 @@ class AppEntryPoint : BaseActivity(), ToolbarTitleListener{
 
     private var drawerLayout : DrawerLayout? = null
     lateinit var toolbarTitle : TextView
+    lateinit var manager : PrefManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +40,7 @@ class AppEntryPoint : BaseActivity(), ToolbarTitleListener{
         setSupportActionBar(main_toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
+        manager = PrefManager(this)
         toolbarTitle = main_toolbar.toolbar_title
 
         //[Setup] the nav host Fragment
@@ -43,6 +53,7 @@ class AppEntryPoint : BaseActivity(), ToolbarTitleListener{
 
         //[Setup] Bottom Navigation
         setupBottomNavMenu(navController)
+        getPriceAbdDCPValues()
     }
 
     //Make title update
@@ -68,6 +79,34 @@ class AppEntryPoint : BaseActivity(), ToolbarTitleListener{
         }
 
     }
+
+    private fun getPriceAbdDCPValues() {
+        val db : FirebaseFirestore = FirebaseFirestore.getInstance()
+        db.collection("PriceAndDCPValues")
+                .document("PRICE")
+                .addSnapshotListener(EventListener<DocumentSnapshot>{ snapshot, e ->
+                    if (e != null){
+                        return@EventListener
+                    }
+                    if (snapshot != null && snapshot.exists()){
+                        val ingredientPrice = snapshot.toObject(IngredientsPrice::class.java)
+                        manager.writePriceValuesToPrefs(ingredientPrice?.ingredients_price!!)
+                    }
+                })
+        db.collection("PriceAndDCPValues")
+                .document("DCP")
+                .addSnapshotListener(EventListener<DocumentSnapshot>{ snapshot, e ->
+                    if (e != null){
+                        return@EventListener
+                    }
+                    if (snapshot != null && snapshot.exists()){
+                        val ingredientsDcp = snapshot.toObject(IngredientsDCP::class.java)
+                        manager.writeDCPValuesToPrefs(ingredientsDcp?.ingredients_dcp!!)
+                        Log.d("ddddddddd", "fetching donedd")
+                    }
+                })
+    }
+
 
     /**
      * Using the NavigationUi and setting up with nav controller

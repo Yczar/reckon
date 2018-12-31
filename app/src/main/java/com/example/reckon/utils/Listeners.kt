@@ -1,6 +1,8 @@
 package com.example.reckon.utils
 
 import androidx.annotation.StringRes
+import com.example.reckon.data_model.AgeRange
+import com.example.reckon.data_model.LiveStockList
 import com.google.firebase.firestore.DocumentSnapshot
 
 interface ToolbarTitleListener {
@@ -11,18 +13,23 @@ interface ToolbarTitleListener {
 }
 
 interface OnLiveStockItemSelectedListener{
-    fun onLiveStockSelected(livestock : DocumentSnapshot)
+    fun onLiveStockSelected(snapshot : DocumentSnapshot,
+                            livestock : LiveStockList)
 }
 
 interface OnAgeExpandListener{
     //Change the value type from Objects to Any -*Fave
-    fun onLiveStockAgeSelected(ingredients: Map<String, Any>?)
+    fun onLiveStockAgeSelected(livestockAgeRange : AgeRange)
 }
 
 interface OnIngredientItemSelected{
     fun onItemSelected(ingredient: String, value: Double)
 
-    fun onItemDeSelected(ingredient: String)
+    fun onItemDeSelected(ingredient: String, value: Double)
+}
+
+interface AfterIngValueModified{
+    fun onValueModified(ingredient: String, value: Double)
 }
 
 interface OnModifyDialogDoneButtonClicked{

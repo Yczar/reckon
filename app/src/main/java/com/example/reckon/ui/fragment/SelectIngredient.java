@@ -3,6 +3,7 @@ package com.example.reckon.ui.fragment;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,9 +13,11 @@ import android.view.ViewGroup;
 
 import com.example.reckon.R;
 import com.example.reckon.adapter.IngredientsAdapter;
+import com.example.reckon.utils.FeedFormulation;
 import com.example.reckon.utils.OnIngredientItemSelected;
 import com.example.reckon.utils.PrefManager;
 import com.example.reckon.utils.ToolbarTitleListener;
+import com.google.android.material.textfield.TextInputEditText;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -36,9 +39,19 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class SelectIngredient extends Fragment implements OnIngredientItemSelected{
     private RecyclerView mRecyclerView;
+    private RecyclerView mSubRecyclerView;
     private IngredientsAdapter mIngredientsAdapter;
-    private Map<String, Double> listOfIngredient = new HashMap<>();
+    private IngredientsAdapter mSubIngredientsAdapter;
+    private Map<String, Object> listOfIngredient = new HashMap<>();
+    private Map<String, Double> unselectedIngredient = new HashMap<>();
+//    private Map<String, Object> listOfSUbIngredient = new HashMap<>();
+    private Map<String, Double> calculatedIngredient = new HashMap<>();
     private PrefManager manager;
+    private Double feedSize;
+    private TextInputEditText feedSizeEdt;
+    public static final String TYPE_INGREDIENTS = "type_ingredients";
+    public static final String TYPE_SUB_INGREDIENTS = "type_sub_ingredients";
+    Map<String, Object> dcpValuesMap;
 
     public SelectIngredient() {
         // Required empty public constructor
@@ -81,7 +94,11 @@ public class SelectIngredient extends Fragment implements OnIngredientItemSelect
         //Added the LayoutManager -*Fave
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mIngredientsAdapter);
+        feedSizeEdt = view.findViewById(R.id.feed_size);
 
+        //TODO modify this line
+        //all checkbox will be checked by default so, listOfIngredients must contain all ingredients
+        listOfIngredient = manager.getIngredientsValuesFromSP();
         return view;
     }
 
@@ -90,17 +107,32 @@ public class SelectIngredient extends Fragment implements OnIngredientItemSelect
 
         //List of Ingredient to be passed to the ModifyIngredient fragment -*Fave
         listOfIngredient.put(ingredient, value);
+        unselectedIngredient.remove(ingredient);
     }
 
     @Override
-    public void onItemDeSelected(@NotNull String ingredient) {
+    public void onItemDeSelected(@NotNull String ingredient, double value) {
         listOfIngredient.remove(ingredient);
+        unselectedIngredient.put(ingredient, value);
+
     }
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void doneEditing(){
-        manager.writeSelectedValuesToPrefs(listOfIngredient);
+        //TODO move this lines of codes to the background
+        //perform necessary calculations
+        feedSize = Double.valueOf(feedSizeEdt.getText().toString());
+//        calculatedIngredient = FeedFormulation
+//                .getSelectedIngredientsSize(listOfIngredient, unselectedIngredient, feedSize);
+        dcpValuesMap = manager.getIngredientsDCPFromSP();
+        Double minDCP = manager.getSelectedLiveStockFromSP().getMin_dcp();
+        calculatedIngredient = FeedFormulation
+                .getCalculatedIngredients(listOfIngredient, dcpValuesMap, feedSize, minDCP);
+        // write to sharedPreferences
+        Log.d("llllllllll", calculatedIngredient.toString());
+        manager.writeSelectedValuesToPrefs(calculatedIngredient);
+        manager.writeFeedSizeValueToPrefs(feedSize);
         Navigation.findNavController(Objects.requireNonNull(getView())).navigate(R.id.action_selectIngredient_to_modifyIngredients);
     }
 

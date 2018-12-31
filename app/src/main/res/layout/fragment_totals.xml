@@ -67,6 +67,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/remark_btn"
             android:layout_below="@+id/ll"
             android:background="@drawable/remark_green"
             android:padding="@dimen/eight_dp"

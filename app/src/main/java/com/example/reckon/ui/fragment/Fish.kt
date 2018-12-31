@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.reckon.BaseActivity
 import com.example.reckon.R
+import com.example.reckon.data_model.LiveStockList
 import com.example.reckon.utils.OnLiveStockItemSelectedListener
 import com.example.reckon.utils.PrefManager
 import com.example.reckon.utils.ToolbarTitleListener
@@ -61,12 +62,13 @@ class Fish : Fragment(), OnLiveStockItemSelectedListener {
         baseActivity.adapter.startListening()
     }
 
-    override fun onLiveStockSelected(livestock: DocumentSnapshot) {
+    override fun onLiveStockSelected(snapshot: DocumentSnapshot, livestock:LiveStockList) {
 
+        PrefManager(context!!).writeMySelectedLiveStockToSP(livestock)
         //Wrote "Fish" to SharedPreferences - *Fave
         PrefManager(context!!).writeSelectedLiveStockToSP(PrefManager.FISH_LIVE_STOCK)
 
-        val id = livestock.id
+        val id = snapshot.id
         val docId = FishDirections.ActionAquaticMenuToAge().setId("${baseActivity.aquaticCollection}/$id")
         Navigation.findNavController(this.view!!).navigate(docId)
     }

@@ -1,6 +1,5 @@
 package com.example.reckon.ui.fragment
 
-import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -17,7 +16,6 @@ import com.example.reckon.R
 import com.example.reckon.adapter.AgeAdapter
 import com.example.reckon.data_model.AgeRange
 import com.example.reckon.utils.OnAgeExpandListener
-import com.example.reckon.utils.OnIngredientItemSelected
 import com.example.reckon.utils.PrefManager
 import com.example.reckon.utils.ToolbarTitleListener
 import com.google.android.material.snackbar.Snackbar
@@ -27,7 +25,6 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.fragment_age.*
 import org.jetbrains.anko.support.v4.find
-import java.util.HashMap
 
 class Age : Fragment(), OnAgeExpandListener{
 
@@ -103,10 +100,11 @@ class Age : Fragment(), OnAgeExpandListener{
         adapter.startListening()
     }
 
-    override fun onLiveStockAgeSelected(ingredients: Map<String, Any>?) {
+    override fun onLiveStockAgeSelected(livestockAgeRange: AgeRange){
         //Writing the map values and keys to SharedPreferences -*Fave
+        val ingredients = livestockAgeRange.ingredients
         if (ingredients != null) {
-            PrefManager(context!!).writeMapValuesToPrefs(ingredients)
+            PrefManager(context!!).writeIngredientsValuesToPrefs(ingredients)
         }
         //Navigating to SelectIngredient finally
         Navigation.findNavController(this.view!!).navigate(R.id.action_age_to_selectIngredient)
