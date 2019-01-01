@@ -18,6 +18,7 @@ import com.example.reckon.utils.OnIngredientItemSelected;
 import com.example.reckon.utils.PrefManager;
 import com.example.reckon.utils.ToolbarTitleListener;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -49,6 +50,7 @@ public class SelectIngredient extends Fragment implements OnIngredientItemSelect
     private PrefManager manager;
     private Double feedSize;
     private TextInputEditText feedSizeEdt;
+    private TextInputLayout feedSizeLayout;
     public static final String TYPE_INGREDIENTS = "type_ingredients";
     public static final String TYPE_SUB_INGREDIENTS = "type_sub_ingredients";
     Map<String, Object> dcpValuesMap;
@@ -95,6 +97,7 @@ public class SelectIngredient extends Fragment implements OnIngredientItemSelect
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mIngredientsAdapter);
         feedSizeEdt = view.findViewById(R.id.feed_size);
+        feedSizeLayout = view.findViewById(R.id.feed_size_layout);
 
         //TODO modify this line
         //all checkbox will be checked by default so, listOfIngredients must contain all ingredients
@@ -121,19 +124,27 @@ public class SelectIngredient extends Fragment implements OnIngredientItemSelect
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void doneEditing(){
         //TODO move this lines of codes to the background
-        //perform necessary calculations
-        feedSize = Double.valueOf(feedSizeEdt.getText().toString());
+        if (!feedSizeEdt.getText().toString().isEmpty()){
+            //perform necessary calculations
+            feedSize = Double.valueOf(feedSizeEdt.getText().toString());
+            if (feedSize > 10.0) {
 //        calculatedIngredient = FeedFormulation
 //                .getSelectedIngredientsSize(listOfIngredient, unselectedIngredient, feedSize);
-        dcpValuesMap = manager.getIngredientsDCPFromSP();
-        Double minDCP = manager.getSelectedLiveStockFromSP().getMin_dcp();
-        calculatedIngredient = FeedFormulation
-                .getCalculatedIngredients(listOfIngredient, dcpValuesMap, feedSize, minDCP);
-        // write to sharedPreferences
-        Log.d("llllllllll", calculatedIngredient.toString());
-        manager.writeSelectedValuesToPrefs(calculatedIngredient);
-        manager.writeFeedSizeValueToPrefs(feedSize);
-        Navigation.findNavController(Objects.requireNonNull(getView())).navigate(R.id.action_selectIngredient_to_modifyIngredients);
+                dcpValuesMap = manager.getIngredientsDCPFromSP();
+                Double minDCP = manager.getSelectedLiveStockFromSP().getMin_dcp();
+                calculatedIngredient = FeedFormulation
+                        .getCalculatedIngredients(listOfIngredient, dcpValuesMap, feedSize, minDCP);
+                // write to sharedPreferences
+                manager.writeSelectedValuesToPrefs(calculatedIngredient);
+                manager.writeFeedSizeValueToPrefs(feedSize);
+                Navigation.findNavController(Objects.requireNonNull(getView()))
+                        .navigate(R.id.action_selectIngredient_to_modifyIngredients);
+            }else{
+                feedSizeLayout.setError("feed size to small");
+            }
+        }else{
+            feedSizeLayout.setError("field cannot be empty");
+        }
     }
 
     @Override

@@ -55,6 +55,9 @@ class ModifyIngredientHolder(itemView : View) : RecyclerView.ViewHolder(itemView
 
         sizePerKg.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
+                if(s.toString().isEmpty()){
+                    s.append("0")
+                }
                 afterIngValueModified.onValueModified(key, s.toString().toDouble())
             }
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}

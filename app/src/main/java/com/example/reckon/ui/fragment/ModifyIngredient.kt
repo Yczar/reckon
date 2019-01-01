@@ -9,6 +9,7 @@ import android.widget.Toast
 import android.widget.Toast.makeText
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.R
@@ -21,6 +22,7 @@ import com.example.reckon.utils.ToolbarTitleListener
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.fragment_totals.*
 import java.text.DecimalFormat
+import java.util.*
 
 
 class ModifyIngredient : Fragment(), AfterIngValueModified {
@@ -71,6 +73,10 @@ class ModifyIngredient : Fragment(), AfterIngValueModified {
         totalPrice = view.findViewById(R.id.et_total_price)
         computePriceAndDCP()
 
+        remarkBtn.setOnClickListener({
+            //TODO navigate to the recipe fragment
+        })
+
         return view
     }
 
@@ -109,9 +115,11 @@ class ModifyIngredient : Fragment(), AfterIngValueModified {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private fun  refreshScreen(){
-        //TODO implemented this method to show recommended ingredients
-        makeText(context, "Refreshed clicked", Toast.LENGTH_LONG).show()
+        val ft = fragmentManager!!.beginTransaction()
+        ft.detach(this).attach(this).commit()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -120,6 +128,7 @@ class ModifyIngredient : Fragment(), AfterIngValueModified {
         inflater!!.inflate(R.menu.menu_modify_ingredient, menu!!)
     }
 
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         val itemId = item!!.itemId
 
