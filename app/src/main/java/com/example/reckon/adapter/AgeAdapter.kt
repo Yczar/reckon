@@ -1,12 +1,14 @@
 package com.example.reckon.adapter
 
 import android.content.ContentValues
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.R
+import com.example.reckon.R.id.parent
 import com.example.reckon.data_model.AgeRange
 import com.example.reckon.utils.OnAgeExpandListener
 import com.example.reckon.utils.PrefManager
@@ -27,6 +29,8 @@ open class AgeAdapter (
 
     override fun onBindViewHolder(holder: AgeHolder, position: Int) {
         holder.bind(getSnapshot(position), listener)
+
+        Log.d(ContentValues.TAG, "III: ${getSnapshot(position).get("age_range")}")
     }
 
     /*override fun getItemCount(): Int {
@@ -54,6 +58,7 @@ class AgeHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
             listener.onLiveStockAgeSelected(livestockAge)
 
             Log.d(ContentValues.TAG, "III: ${livestockAge.age_range}")
+            PrefManager(itemView.context).writeSelectedAgeRange(livestockAge.age_range!!)
         }
     }
 }

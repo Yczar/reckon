@@ -17,6 +17,7 @@ class ModifyIngredientAdapter(
         val toModify : Map<String, Double>,
         val priceValues : Map<String, Int>,
         val afterIngValueModified: AfterIngValueModified) : RecyclerView.Adapter<ModifyIngredientHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ModifyIngredientHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_ingredient_modifier, parent, false)

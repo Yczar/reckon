@@ -51,9 +51,9 @@ class AppEntryPoint : BaseActivity(), ToolbarTitleListener{
         //[Setup] Nav Controller
         val navController = fragmentHoster.navController
 
-        //[Setup] Bottom Navigation
+        /*//[Setup] Bottom Navigation
         setupBottomNavMenu(navController)
-        getPriceAbdDCPValues()
+        getPriceAbdDCPValues()*/
     }
 
     //Make title update
@@ -115,11 +115,11 @@ class AppEntryPoint : BaseActivity(), ToolbarTitleListener{
      * if it matches then [navigation] is done
      * [it] means this this particular bottom navigation
      * */
-    private fun setupBottomNavMenu(navController: NavController){
+    /*private fun setupBottomNavMenu(navController: NavController){
         bottom_nav_view.let {
             NavigationUI.setupWithNavController(it, navController)
         }
-    }
+    }*/
 
     override fun onSupportNavigateUp()
             = findNavController(this, R.id.host_fragment).navigateUp()

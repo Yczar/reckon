@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout.VERTICAL
+import androidx.recyclerview.widget.DividerItemDecoration
 
 import com.example.reckon.R
 
@@ -20,11 +22,15 @@ private const val ARG_PARAM2 = "param2"
  */
 class Totals : Fragment() {
 
+    lateinit var decoration: DividerItemDecoration
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+
+        /*decoration = DividerItemDecoration(context, VERTICAL)
+        recyclerView.addItemDecoration(decoration)*/
+
         return inflater.inflate(R.layout.fragment_totals, container, false)
     }
-
-
 }

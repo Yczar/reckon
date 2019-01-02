@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.reckon.R;
 import com.example.reckon.adapter.IngredientsAdapter;
@@ -54,6 +55,7 @@ public class SelectIngredient extends Fragment implements OnIngredientItemSelect
     public static final String TYPE_INGREDIENTS = "type_ingredients";
     public static final String TYPE_SUB_INGREDIENTS = "type_sub_ingredients";
     Map<String, Object> dcpValuesMap;
+    private TextView textView;
 
     public SelectIngredient() {
         // Required empty public constructor
@@ -86,6 +88,10 @@ public class SelectIngredient extends Fragment implements OnIngredientItemSelect
 
 
         manager = new PrefManager(view.getContext());
+
+        textView = view.findViewById(R.id.tv_sub_title);
+        textView.setText(new StringBuilder().append("Age range: ").append(manager.getSelectedAgeRange()).toString());
+
         mRecyclerView = view.findViewById(R.id.recycler_view);
 
         mIngredientsAdapter = new IngredientsAdapter(this,

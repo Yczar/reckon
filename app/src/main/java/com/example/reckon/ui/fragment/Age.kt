@@ -24,6 +24,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.fragment_age.*
+import kotlinx.android.synthetic.main.include_subtitle.*
+import kotlinx.android.synthetic.main.include_subtitle.view.*
 import org.jetbrains.anko.support.v4.find
 
 class Age : Fragment(), OnAgeExpandListener{
@@ -43,6 +45,7 @@ class Age : Fragment(), OnAgeExpandListener{
         val view = inflater.inflate(R.layout.fragment_age, container, false)
 
         manager = PrefManager(view.context)
+        view.tv_sub_title.text = manager!!.getSelectedLiveStockName()
 
         return view
     }

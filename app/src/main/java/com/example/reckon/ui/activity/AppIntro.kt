@@ -25,10 +25,10 @@ class AppIntro : AppCompatActivity(), OnClickListener {
      * */
     private lateinit var mViewPager : ViewPager
     private val appIntroLayouts : IntArray = intArrayOf(
-            R.layout.first_screen,
-            R.layout.second_screen,
-            R.layout.third_screen,
-            R.layout.first_screen
+            R.layout.ai_1_screen,
+            R.layout.ai_2_screen,
+            R.layout.ai_3_screen,
+            R.layout.ai_1_screen
     )
     lateinit var dotsLayout : LinearLayout
     lateinit var dots : Array<ImageView>

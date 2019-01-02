@@ -1,15 +1,15 @@
 package com.example.reckon.ui.fragment
 
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
-import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import android.widget.Toast.makeText
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.R
@@ -20,9 +20,8 @@ import com.example.reckon.utils.FeedFormulation
 import com.example.reckon.utils.PrefManager
 import com.example.reckon.utils.ToolbarTitleListener
 import com.google.android.material.textfield.TextInputEditText
-import kotlinx.android.synthetic.main.fragment_totals.*
+import kotlinx.android.synthetic.main.include_subtitle.view.*
 import java.text.DecimalFormat
-import java.util.*
 
 
 class ModifyIngredient : Fragment(), AfterIngValueModified {
@@ -39,6 +38,7 @@ class ModifyIngredient : Fragment(), AfterIngValueModified {
     lateinit var remarkBtn : TextView
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         setHasOptionsMenu(true)
@@ -56,6 +56,8 @@ class ModifyIngredient : Fragment(), AfterIngValueModified {
         //Added null value for titleString -*Fave
         (activity as ToolbarTitleListener).updateTitle(R.string.modify_ingredients, null)
 
+        view.tv_sub_title.text = "Age range: ${manager.getSelectedAgeRange()}"
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.modify_fragment_recycler)
 
         recyclerView.apply {
@@ -72,10 +74,6 @@ class ModifyIngredient : Fragment(), AfterIngValueModified {
         totalDCP = view.findViewById(R.id.et_total_dcp)
         totalPrice = view.findViewById(R.id.et_total_price)
         computePriceAndDCP()
-
-        remarkBtn.setOnClickListener({
-            //TODO navigate to the recipe fragment
-        })
 
         return view
     }
@@ -122,6 +120,17 @@ class ModifyIngredient : Fragment(), AfterIngValueModified {
 
     }
 
+    /**
+     * Here is where we go into the [ECommercePacakge]
+     * We will use the [AppDatabase] here
+     * And the [AppDao]
+     * Because we need to add [Cart] details
+     * Here
+     * */
+    private fun addIngredientToCart(){
+        makeText(context, "Added To Cart", LENGTH_SHORT).show()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)
 
@@ -134,6 +143,7 @@ class ModifyIngredient : Fragment(), AfterIngValueModified {
 
         when(itemId) {
             R.id.menu_action_refresh -> refreshScreen()
+            R.id.menu_add_to_cart -> addIngredientToCart()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -141,32 +151,5 @@ class ModifyIngredient : Fragment(), AfterIngValueModified {
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        /*window.decorView.apply {
-            systemUiVisibility = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_FULLSCREEN
-        }*/
-    }
-
-    private fun showFullScreen() {
-        if (Build.VERSION.SDK_INT in 12..18) { // for lower api
-            val v = this.activity!!.window.decorView
-            v.systemUiVisibility = View.GONE
-        } else if (Build.VERSION.SDK_INT >= 19) {
-            //for new api versions.
-            val decorView = this.activity!!.window.decorView// for fragment use getActivity().getWindow().getDecorView();
-            val uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-            decorView.systemUiVisibility = uiOptions
-        }
-    }
-
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
-    override fun onResume() {
-        super.onResume()
-
-        /*activity!!.window.decorView.apply {
-            systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
-                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        }*/
     }
 }

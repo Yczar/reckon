@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView android:id="@+id/mcv_pack_container"
+    app:cardCornerRadius="@dimen/eight_dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:elevation="0dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_back"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/rl_pack_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/four_dp"
+            app:layout_constraintEnd_toStartOf="@+id/divider"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintWidth_percent="0.8"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/divider">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/img_livestock_container"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="@dimen/four_dp"
+                app:elevation="@dimen/four_dp">
+
+                <ImageView
+                    android:id="@+id/img_livestock"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/image_content_description"
+                    android:padding="@dimen/four_dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/hen" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_marginLeft="@dimen/eight_dp"
+                android:id="@+id/tv_livestock_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:paddingBottom="@dimen/four_dp"
+                android:layout_toRightOf="@id/img_livestock_container"
+                android:text="Broilers"
+                android:textSize="18sp"
+                android:layout_toEndOf="@id/img_livestock_container"
+                android:layout_marginStart="@dimen/eight_dp" />
+
+            <TextView
+                android:textColor="@color/white"
+                android:layout_marginLeft="@dimen/eight_dp"
+                android:id="@+id/tv_livestock_type_age_range"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_livestock_type"
+                android:layout_toRightOf="@id/img_livestock_container"
+                android:text="2 - 3 Weeks"
+                android:textSize="14sp"
+                android:layout_marginStart="@dimen/eight_dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@id/img_livestock_container"
+                android:layout_marginTop="@dimen/eight_dp"
+                android:padding="@dimen/four_dp">
+
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:id="@+id/text_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Duration"
+                    app:layout_constraintEnd_toStartOf="@+id/text_total_dcp"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:id="@+id/tv_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15 Days"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/text_duration"
+                    app:layout_constraintTop_toBottomOf="@+id/text_duration" />
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:id="@+id/text_total_dcp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DCP (%)"
+                    app:layout_constraintEnd_toStartOf="@+id/text_kg"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/text_duration"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:id="@+id/tv_total_dcp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9000"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/text_total_dcp"
+                    app:layout_constraintTop_toBottomOf="@+id/text_total_dcp" />
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:id="@+id/text_kg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Size (KG)"
+                    app:layout_constraintEnd_toStartOf="@+id/text_price"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/text_total_dcp"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:id="@+id/tv_kg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="89"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/text_kg"
+                    app:layout_constraintTop_toBottomOf="@+id/text_kg" />
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:id="@+id/text_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+
+                    android:text="Price"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/text_kg"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:textColor="@color/white"
+                    android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1000.89"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/text_price"
+                    app:layout_constraintTop_toBottomOf="@+id/text_price" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </RelativeLayout>
+
+        <include
+            android:id="@+id/divider"
+            layout="@layout/include_vertical_divider"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ll_pack_number"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/rl_pack_content"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/ll_pack_number"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/divider"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/twenty_four_sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4" />
+
+            <TextView
+                android:layout_marginTop="@dimen/sixteen_dp"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Packs" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

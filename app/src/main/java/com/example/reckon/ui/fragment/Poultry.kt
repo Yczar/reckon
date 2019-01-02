@@ -72,7 +72,7 @@ class Poultry : Fragment(), OnLiveStockItemSelectedListener {
         PrefManager(context!!).writeMySelectedLiveStockToSP(livestock)
 
         //Wrote "Fish" to SharedPreferences - *Fave
-        PrefManager(context!!).writeSelectedLiveStockToSP(PrefManager.POULTY_LIVE_STOCK)
+        PrefManager(context!!).writeSelectedLiveStockToSP(PrefManager.POULTRY_LIVE_STOCK)
 
         val id = snapshot.id
         val docId =

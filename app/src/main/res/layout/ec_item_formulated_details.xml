@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_margin="@dimen/four_dp"
+    app:cardCornerRadius="@dimen/four_dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:padding="@dimen/four_dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginTop="@dimen/four_dp"
+            android:background="@drawable/circular_gradient"
+            android:id="@+id/img_ingredient"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/image_content_description"
+            android:padding="@dimen/eight_dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/corn" />
+
+        <TextView
+            android:padding="2dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="@dimen/eight_dp"
+            android:layout_toRightOf="@+id/img_ingredient"
+            android:id="@+id/tv_ingredient_name"
+            android:layout_width="wrap_content"
+            android:text="@string/ingredient_name"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:padding="2dp"
+            android:layout_below="@+id/tv_ingredient_name"
+            android:layout_marginLeft="@dimen/eight_dp"
+            android:layout_toRightOf="@+id/img_ingredient"
+            android:id="@+id/tv_ingredient_size"
+            android:layout_width="match_parent"
+            android:text="500 Kg"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_ingredient_price"
+            android:layout_alignParentRight="true"
+            android:drawableLeft="@drawable/ic_naira"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="500"/>
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>

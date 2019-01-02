@@ -18,4 +18,23 @@
         <item name="android:textColorSecondary">@android:color/black</item>
     </style>
 
+    <style name="AppTheme_NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme_NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ripple_effect">
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="button_in_cart" parent="ripple_effect">
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">@dimen/eight_dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">@dimen/sixteen_dp</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
 </resources>

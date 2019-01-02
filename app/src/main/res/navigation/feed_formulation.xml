@@ -61,5 +61,11 @@
         android:id="@+id/modifyIngredient"
         android:name="com.example.reckon.ui.fragment.ModifyIngredient"
         android:label="fragment_select_ingredient"
-        tools:layout="@layout/fragment_select_ingredient" />
+        tools:layout="@layout/fragment_select_ingredient" >
+        <action
+            android:id="@+id/action_modifyIngredient_to_selectIngredient"
+            app:destination="@id/selectIngredient"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
 </navigation>

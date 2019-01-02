@@ -40,4 +40,8 @@ task clean(type: Delete) {
 ext {
     supportVersion = "1.0.0"
     navigationVersion = "1.0.0-alpha07"
+
+    roomVersion = '1.1.1'
+    archLifecycleVersion = '1.1.1'
+    coroutines = '0.26.1'
 }

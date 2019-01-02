@@ -47,6 +47,8 @@ class LivestockHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
         //Click Listener
         itemView.setOnClickListener{
             listener.onLiveStockSelected(snapshot, livestock)
+            /*listener.onLiveStockSelected(snapshot)*/
+            PrefManager(itemView.context).writeSelectedLiveStockName(livestock.name!!)
         }
     }
 }

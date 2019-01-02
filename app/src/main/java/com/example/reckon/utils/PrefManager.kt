@@ -31,7 +31,7 @@ class PrefManager(var context: Context) {
         const val LIVESTOCK_PREFS_NAME = "Livestock"
 
         const val FISH_LIVE_STOCK = "Fish"
-        const val POULTY_LIVE_STOCK = "Poultry"
+        const val POULTRY_LIVE_STOCK = "Poultry"
         const val INGREDIENTS = "ingredientsvalue"
         const val SUB_INGREDIENTS = "subingredientsvalue"
         const val SELECTED_INGREDIENTS = "selectedIngredients"
@@ -39,7 +39,8 @@ class PrefManager(var context: Context) {
         const val INGREDIENTS_DCP = "IngredientsDCP"
         const val FEEDSIZE = "feedsize"
 
-        const val modifyDialogFragTag = "dialogTag"
+        const val AGE_RANGE_KEY = "age_range"
+        const val LIVE_STOCK_NAME_KEY = "livestock_name"
     }
 
     private fun getSp() {
@@ -178,6 +179,28 @@ class PrefManager(var context: Context) {
         editor.putString(LIVESTOCK_KEY, selectedLiveStock)
         editor.apply()
 
+    }
+
+    //Writing the selected age range
+    fun writeSelectedAgeRange(selectedLiveStock: String){
+        val editor = getLiveStockPrefs().edit()
+        editor.putString(AGE_RANGE_KEY, selectedLiveStock)
+        editor.apply()
+    }
+
+    fun getSelectedAgeRange() : String?{
+        return getLiveStockPrefs().getString(AGE_RANGE_KEY, "")
+    }
+
+    //Writing the selected age range
+    fun writeSelectedLiveStockName(selectedLiveStock: String){
+        val editor = getLiveStockPrefs().edit()
+        editor.putString(LIVE_STOCK_NAME_KEY, selectedLiveStock)
+        editor.apply()
+    }
+
+    fun getSelectedLiveStockName() : String?{
+        return getLiveStockPrefs().getString(LIVE_STOCK_NAME_KEY, "")
     }
 
     //Getting the selected livestock -*Fave

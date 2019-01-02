@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/four_dp"
+    android:layout_width="match_parent"
+    style="@style/ripple_effect"
+    android:elevation="@dimen/four_dp"
+    app:cardBackgroundColor="@android:color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            style="@style/ripple_effect"
+            android:background="@android:color/transparent"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_add"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true" />
+
+        <RelativeLayout
+            android:id="@+id/rl_content_holder"
+            android:padding="@dimen/eight_dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/img_livestock_container"
+                app:cardCornerRadius="@dimen/four_dp"
+                android:layout_width="80dp"
+                app:elevation="@dimen/four_dp"
+                android:layout_height="80dp">
+                <ImageView
+                    android:id="@+id/ec_img_livestock"
+                    android:contentDescription="@string/image_content_description"
+                    android:padding="@dimen/four_dp"
+                    android:scaleType="centerCrop"
+                    android:layout_width="match_parent"
+                    android:adjustViewBounds="true"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/hen"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_marginLeft="@dimen/sixteen_dp"
+                android:layout_toRightOf="@+id/img_livestock_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/sixteen_dp"
+                android:layout_toEndOf="@+id/img_livestock_container">
+
+                <TextView
+                    android:id="@+id/tv_livestock_type"
+                    android:textSize="@dimen/twenty_four_sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Broilers"/>
+
+                <TextView
+                    android:layout_below="@+id/tv_livestock_type"
+                    android:id="@+id/tv_livestock_type_age_range"
+                    android:textSize="@dimen/sixteen_sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2 - 3 Weeks"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/four_dp"
+                    android:layout_marginBottom="@dimen/eight_dp">
+
+                    <TextView
+                        android:padding="@dimen/four_dp"
+                        android:id="@+id/tv_initial_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_naira"
+                        android:drawableRight="@drawable/ic_close"
+                        android:drawablePadding="@dimen/four_dp"
+                        android:text="1840.89"
+                        app:layout_constraintEnd_toStartOf="@id/packs_input"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/packs_input"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_total_price"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/tv_initial_price"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/no_of_packs"
+                        app:hintEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/ec_et_packs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:drawableLeft="@drawable/ic_naira"
+                        android:drawablePadding="@dimen/four_dp"
+                        android:padding="@dimen/four_dp"
+                        android:id="@+id/tv_total_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1840.89"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/packs_input" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <include
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            layout="@layout/include_horizontal_divider"
+            android:layout_below="@+id/rl_content_holder"/>
+
+        <LinearLayout
+            android:layout_below="@+id/divider"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/button_in_cart"
+                android:text="Delete"
+                android:drawableLeft="@drawable/ic_delete"
+                android:drawableStart="@drawable/ic_delete" />
+
+            <include
+                layout="@layout/include_vertical_divider"/>
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/button_in_cart"
+                android:text="Edit"
+                android:drawableLeft="@drawable/ic_edit"
+                android:drawableStart="@drawable/ic_edit" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>
