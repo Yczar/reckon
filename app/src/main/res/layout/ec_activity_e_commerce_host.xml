@@ -19,8 +19,21 @@
             app:popupTheme="@style/AppTheme_NoActionBar.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
+    <fragment
+        android:id="@+id/host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
 
-    <include layout="@layout/ec_content_e_cormmerce_host" />
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_appbar"
+        app:navGraph="@navigation/ecommerce_navigation" />
+
+    <!--<include layout="@layout/ec_content_e_cormmerce_host" />-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

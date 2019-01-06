@@ -1,6 +1,8 @@
 package com.example.reckon.eCommerce.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 
@@ -14,10 +16,17 @@ interface AppDao {
 
     //Get All Cart Data
     @Query("SELECT * FROM eCommerce_db")
-    fun getAllCartData(): List<CartData>
+    fun getAllCartData(): LiveData<MutableList<CartData>>
 
     //Get Full Details
     @Query("SELECT * FROM eCommerce_db WHERE uid IN (:cartItemId)")
     fun getFullDetail(cartItemId: String) : CartData
+
+    //delete Cart Data
+    @Delete
+    fun deleteCartData(cartItem : CartData)
+
+    @Query("DELETE FROM eCommerce_db")
+    fun deleteAllCartData()
 
 }

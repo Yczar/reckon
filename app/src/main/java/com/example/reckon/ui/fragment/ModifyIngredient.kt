@@ -2,6 +2,7 @@ package com.example.reckon.ui.fragment
 
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.*
@@ -10,16 +11,22 @@ import android.widget.Toast.LENGTH_SHORT
 import android.widget.Toast.makeText
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.R
 import com.example.reckon.adapter.ModifyIngredientAdapter
+import com.example.reckon.data_model.AgeRange
 import com.example.reckon.data_model.LiveStockList
+import com.example.reckon.eCommerce.ECommerceHost
+import com.example.reckon.eCommerce.database.CartData
+import com.example.reckon.eCommerce.view_model.AddToCartViewModel
 import com.example.reckon.utils.AfterIngValueModified
 import com.example.reckon.utils.FeedFormulation
 import com.example.reckon.utils.PrefManager
 import com.example.reckon.utils.ToolbarTitleListener
 import com.google.android.material.textfield.TextInputEditText
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.include_subtitle.view.*
 import java.text.DecimalFormat
 
@@ -33,9 +40,12 @@ class ModifyIngredient : Fragment(), AfterIngValueModified {
     lateinit var priceMap : MutableMap<String, Double>
     lateinit var totalDCP : TextInputEditText
     lateinit var totalPrice : TextInputEditText
+    lateinit var liveStockAgeRange : AgeRange
     private var feedSize : Double = 0.0
     lateinit var selectedLivestock : LiveStockList
     lateinit var remarkBtn : TextView
+    var totalDcpValue : Double = 0.0
+    var totalDcpPrice : Double = 0.0
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     @SuppressLint("SetTextI18n")
@@ -52,6 +62,7 @@ class ModifyIngredient : Fragment(), AfterIngValueModified {
         priceMap = manager.getIngredientsPriceFromSP() as MutableMap<String, Double>
         selectedLivestock = manager.getSelectedLiveStockFromSP()
         remarkBtn = view.findViewById(R.id.remark_btn)
+        liveStockAgeRange = manager.getLiveStockAgeRangeFromSP()
 
         //Added null value for titleString -*Fave
         (activity as ToolbarTitleListener).updateTitle(R.string.modify_ingredients, null)
@@ -88,11 +99,12 @@ class ModifyIngredient : Fragment(), AfterIngValueModified {
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     fun computePriceAndDCP(){
         val dcpAndPrice : List<Double> = FeedFormulation
-                .getTotalDCPandPrice(ingredientsMap, dcpValuesMap, priceMap, feedSize)
+                .getTotalDCPandPrice(ingredientsMap, dcpValuesMap, priceMap)
 
         val formatter = DecimalFormat("#0.00")
-        val totalDcpValue = dcpAndPrice[0]
-        val totalDcpPrice = dcpAndPrice[1]
+        totalDcpValue = dcpAndPrice[0]
+        totalDcpPrice = dcpAndPrice[1]
+        feedSize = dcpAndPrice[2]
         totalDCP.setText(formatter.format(totalDcpValue).toString())
         totalPrice.setText(formatter.format(totalDcpPrice).toString())
 
@@ -128,7 +140,27 @@ class ModifyIngredient : Fragment(), AfterIngValueModified {
      * Here
      * */
     private fun addIngredientToCart(){
+        val gson = Gson()
+        var noOfPacks = 1
+        //TODO fix this error
+        val cartData = CartData()
+        cartData.livestockImage = liveStockAgeRange.image_url
+        cartData.livestockType = selectedLivestock.name
+        cartData.livestockAgeRange = liveStockAgeRange.age_range
+        cartData.initialAmount = totalDcpPrice
+        cartData.noOfPacks = noOfPacks
+        cartData.totalPrice = totalDcpPrice * noOfPacks
+        cartData.totalDCP = totalDcpValue
+        cartData.totalSize = feedSize
+        cartData.feedingDescription =  liveStockAgeRange.feeding_desc
+        cartData.ingredient_list = gson.toJson(ingredientsMap)
+
+        val addToCartViewModel  =
+                ViewModelProviders.of(this).get(AddToCartViewModel::class.java)
+        addToCartViewModel.insertCartDataToDB(cartData)
         makeText(context, "Added To Cart", LENGTH_SHORT).show()
+        val intent = Intent(context, ECommerceHost::class.java)
+        startActivity(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -152,4 +184,5 @@ class ModifyIngredient : Fragment(), AfterIngValueModified {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
+
 }

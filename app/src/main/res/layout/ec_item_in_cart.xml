@@ -94,16 +94,16 @@
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/tv_initial_price"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="@string/no_of_packs"
                         app:hintEnabled="true">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <TextView
                         android:id="@+id/ec_et_packs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number" />
+                        />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <TextView
@@ -138,7 +138,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.google.android.material.button.MaterialButton
+            <Button
+                android:id="@+id/delete_cart_data"
                 style="@style/button_in_cart"
                 android:text="Delete"
                 android:drawableLeft="@drawable/ic_delete"
@@ -147,7 +148,8 @@
             <include
                 layout="@layout/include_vertical_divider"/>
 
-            <com.google.android.material.button.MaterialButton
+            <Button
+                android:id="@+id/edit_cart_data"
                 style="@style/button_in_cart"
                 android:text="Edit"
                 android:drawableLeft="@drawable/ic_edit"

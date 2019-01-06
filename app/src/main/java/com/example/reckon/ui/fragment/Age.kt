@@ -24,7 +24,6 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.fragment_age.*
-import kotlinx.android.synthetic.main.include_subtitle.*
 import kotlinx.android.synthetic.main.include_subtitle.view.*
 import org.jetbrains.anko.support.v4.find
 
@@ -104,11 +103,8 @@ class Age : Fragment(), OnAgeExpandListener{
     }
 
     override fun onLiveStockAgeSelected(livestockAgeRange: AgeRange){
-        //Writing the map values and keys to SharedPreferences -*Fave
-        val ingredients = livestockAgeRange.ingredients
-        if (ingredients != null) {
-            PrefManager(context!!).writeIngredientsValuesToPrefs(ingredients)
-        }
+        //Writing the whole AgeRange object to SharedPreferences -*Fave
+        PrefManager(context!!).writeLivestockAgeRangeToPrefs(livestockAgeRange)
         //Navigating to SelectIngredient finally
         Navigation.findNavController(this.view!!).navigate(R.id.action_age_to_selectIngredient)
     }

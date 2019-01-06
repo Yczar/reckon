@@ -1,16 +1,27 @@
 package com.example.reckon.eCommerce.adapter
 
+import android.content.ContentValues
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.R
 import com.example.reckon.eCommerce.database.CartData
+import com.example.reckon.eCommerce.view_model.AddToCartViewModel
+import com.example.reckon.utils.OnAgeExpandListener
+import com.example.reckon.utils.OnCartItemSelected
+import com.example.reckon.utils.PrefManager
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.ec_item_in_cart.view.*
+import java.text.DecimalFormat
+import java.util.*
 
 class InCartAdapter(
-        private val inComingCarts: List<CartData>):
+        private var inComingCarts: List<CartData>,
+        var listener: OnCartItemSelected):
 
         RecyclerView.Adapter<InCartViewHolder>() {
     override fun getItemCount(): Int {
@@ -24,53 +35,38 @@ class InCartAdapter(
     }
 
     override fun onBindViewHolder(holder: InCartViewHolder, position: Int) {
-        var thisCart = inComingCarts[position]
+        holder.bind(inComingCarts = inComingCarts[position], listener = listener)
+    }
 
-        val liveStockImage = thisCart.livestockImage
-        val liveStockType = thisCart.livestockType
-        val liveStockAgeRange = thisCart.livestockAgeRange
-        val livestockInitialAmount = thisCart.initialAmount
-        val ingredientsPacks = thisCart.noOfPacks
-        val totalAmount = thisCart.totalPrice
-        val feedDuration = thisCart.feedDuration
-        val totalDCP = thisCart.totalDCP
-        val feedingDescription = thisCart.feedingDescription
-
-        holder.bind(
-                livestock_image = liveStockImage ,
-                livestock_type = liveStockType,
-                livestock_age_range = liveStockAgeRange,
-                livestock_amount = livestockInitialAmount,
-                number_of_packs = ingredientsPacks,
-                total_price = totalAmount,
-                feed_duration = feedDuration,
-                total_dcp = totalDCP,
-                feed_description = feedingDescription
-        )
+    fun update(cartListData : List<CartData>){
+        inComingCarts = cartListData
+        notifyDataSetChanged()
     }
 }
 
 class InCartViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
     fun bind(
-            livestock_image: String?,
-            livestock_type: String?,
-            livestock_age_range: String?,
-            livestock_amount: String?,
-            number_of_packs: Int = 1,
-            total_price: String?,
-            feed_duration: String?,
-            total_dcp: String?,
-            feed_description: String?
+            inComingCarts: CartData,
+            listener: OnCartItemSelected
     ){
         //Load Image
         Picasso.get()
-                .load(livestock_image)
+                .load(inComingCarts.livestockImage)
                 .into(itemView.ec_img_livestock)
+        val formatter = DecimalFormat("#0.00")
 
-        itemView.tv_livestock_type.text = livestock_type
-        itemView.tv_livestock_type_age_range.text = livestock_age_range
-        itemView.tv_initial_price.text = livestock_amount
-        itemView.ec_et_packs.setText(number_of_packs)
-        itemView.tv_total_price.text = livestock_amount
+        itemView.tv_livestock_type.text = inComingCarts.livestockType
+        itemView.tv_livestock_type_age_range.text = inComingCarts.livestockAgeRange
+        itemView.tv_initial_price.text = formatter.format(inComingCarts.initialAmount).toString()
+        itemView.ec_et_packs.text = inComingCarts.noOfPacks.toString()
+        itemView.tv_total_price.text = formatter.format(inComingCarts.totalPrice).toString()
+
+        itemView.setOnClickListener{
+            listener.onItemSelected(inComingCarts)
+        }
+        val delete = itemView.findViewById<Button>(R.id.delete_cart_data)
+        delete.setOnClickListener{
+            listener.onDeleteCartDataClicked(inComingCarts)
+        }
     }
 }

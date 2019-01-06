@@ -3,7 +3,6 @@ package com.example.reckon.ui.fragment;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -95,7 +94,7 @@ public class SelectIngredient extends Fragment implements OnIngredientItemSelect
         mRecyclerView = view.findViewById(R.id.recycler_view);
 
         mIngredientsAdapter = new IngredientsAdapter(this,
-                manager.getIngredientsValuesFromSP());
+                manager.getLiveStockAgeRangeFromSP().getIngredients());
 
         mRecyclerView.setHasFixedSize(true);
 
@@ -107,7 +106,7 @@ public class SelectIngredient extends Fragment implements OnIngredientItemSelect
 
         //TODO modify this line
         //all checkbox will be checked by default so, listOfIngredients must contain all ingredients
-        listOfIngredient = manager.getIngredientsValuesFromSP();
+        listOfIngredient = manager.getLiveStockAgeRangeFromSP().getIngredients();
         return view;
     }
 

@@ -3,11 +3,16 @@ package com.example.reckon.eCommerce
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.example.reckon.R
 
 import kotlinx.android.synthetic.main.ec_activity_e_commerce_host.*
 
 class ECommerceHost : AppCompatActivity() {
+    private var drawerLayout : DrawerLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,4 +25,11 @@ class ECommerceHost : AppCompatActivity() {
         }
     }
 
+    override fun onSupportNavigateUp()
+            = Navigation.findNavController(this, R.id.host_fragment).navigateUp()
+
+    override fun onNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(drawerLayout,
+                Navigation.findNavController(this, R.id.host_fragment))
+    }
 }

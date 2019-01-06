@@ -52,8 +52,8 @@ class AppEntryPoint : BaseActivity(), ToolbarTitleListener{
         val navController = fragmentHoster.navController
 
         /*//[Setup] Bottom Navigation
-        setupBottomNavMenu(navController)
-        getPriceAbdDCPValues()*/
+        setupBottomNavMenu(navController)*/
+        getPriceAbdDCPValues()
     }
 
     //Make title update
@@ -102,7 +102,6 @@ class AppEntryPoint : BaseActivity(), ToolbarTitleListener{
                     if (snapshot != null && snapshot.exists()){
                         val ingredientsDcp = snapshot.toObject(IngredientsDCP::class.java)
                         manager.writeDCPValuesToPrefs(ingredientsDcp?.ingredients_dcp!!)
-                        Log.d("ddddddddd", "fetching donedd")
                     }
                 })
     }

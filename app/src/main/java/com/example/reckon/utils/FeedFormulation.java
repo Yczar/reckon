@@ -121,8 +121,7 @@ public class FeedFormulation {
 
     public static List<Double> getTotalDCPandPrice(Map<String, Double> ingSize,
                                                    Map<String, Double> ingDCP,
-                                                   Map<String, Double> ingPrice,
-                                                   Double feedsize){
+                                                   Map<String, Double> ingPrice){
         List<Double> dcpAndPrice = new ArrayList<>();
         Double totalPrice = 0.0;
         Double totalDCP = 0.0;
@@ -135,8 +134,10 @@ public class FeedFormulation {
             totalPrice += size*price;
             totalDCP += size*dcp;
         }
-        dcpAndPrice.add(totalDCP/feedsize);
+        Double feedSize = getSum(ingSize);
+        dcpAndPrice.add(totalDCP/feedSize);
         dcpAndPrice.add(totalPrice);
+        dcpAndPrice.add(feedSize);
         return dcpAndPrice;
     }
 }

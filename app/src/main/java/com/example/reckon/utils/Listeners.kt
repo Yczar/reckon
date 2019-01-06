@@ -3,6 +3,7 @@ package com.example.reckon.utils
 import androidx.annotation.StringRes
 import com.example.reckon.data_model.AgeRange
 import com.example.reckon.data_model.LiveStockList
+import com.example.reckon.eCommerce.database.CartData
 import com.google.firebase.firestore.DocumentSnapshot
 
 interface ToolbarTitleListener {
@@ -30,6 +31,12 @@ interface OnIngredientItemSelected{
 
 interface AfterIngValueModified{
     fun onValueModified(ingredient: String, value: Double)
+}
+
+interface OnCartItemSelected{
+    fun onItemSelected(cartData: CartData)
+    fun onDeleteCartDataClicked(inComingCarts: CartData) {
+    }
 }
 
 interface OnModifyDialogDoneButtonClicked{

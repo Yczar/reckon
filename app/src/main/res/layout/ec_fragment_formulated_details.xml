@@ -12,6 +12,7 @@
         layout="@layout/ec_include_ingredient_pack_content"/>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/feeding_desc"
         style="@style/ripple_effect"
         app:elevation="@dimen/eight_dp"
         app:cardBackgroundColor="@color/white"
@@ -35,6 +36,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cart_details_rv"
         android:layout_marginTop="@dimen/four_dp"
         tools:listitem="@layout/ec_item_formulated_details"
         android:layout_width="match_parent"

@@ -11,6 +11,7 @@ data class LiveStockList(
 data class AgeRange(
         val age_range : String? = null,
         val image_url : String? = null,
+        val feeding_desc : String? = null,
         val ingredients: Map<String, Any>? = null,
         val sub_ingredients: Map<String, Any>? = null
 )

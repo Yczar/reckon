@@ -9,12 +9,16 @@
         android:id="@+id/inCart"
         android:name="com.example.reckon.eCommerce.fragmentsUi.InCart"
         android:label="ec_fragment_in_cart"
-        tools:layout="@layout/ec_fragment_in_cart" />
-    <activity
+        tools:layout="@layout/ec_fragment_in_cart" >
+        <action
+            android:id="@+id/action_inCart_to_formulatedDetails"
+            app:destination="@id/formulatedDetails" />
+    </fragment>
+    <!--<activity
         android:id="@+id/ECommerceHost"
         android:name="com.example.reckon.eCommerce.ECommerceHost"
         android:label="ec_content_e_cormmerce_host"
-        tools:layout="@layout/ec_content_e_cormmerce_host" />
+        tools:layout="@layout/ec_content_e_cormmerce_host" />-->
     <fragment
         android:id="@+id/formulatedDetails"
         android:name="com.example.reckon.eCommerce.fragmentsUi.FormulatedDetails"

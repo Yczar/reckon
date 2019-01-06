@@ -196,6 +196,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/tv_packs"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="@dimen/twenty_four_sp"

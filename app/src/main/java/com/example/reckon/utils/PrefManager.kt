@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reckon.BaseActivity
 import com.example.reckon.R
+import com.example.reckon.data_model.AgeRange
 import com.example.reckon.data_model.LiveStockList
+import com.example.reckon.eCommerce.database.CartData
 import com.example.reckon.ui.activity.AppEntryPoint
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -33,6 +35,8 @@ class PrefManager(var context: Context) {
         const val FISH_LIVE_STOCK = "Fish"
         const val POULTRY_LIVE_STOCK = "Poultry"
         const val INGREDIENTS = "ingredientsvalue"
+        const val CART_DATA = "cart_data"
+        const val LIVESTOCK_AGE_RANGE = "livestock_age_range"
         const val SUB_INGREDIENTS = "subingredientsvalue"
         const val SELECTED_INGREDIENTS = "selectedIngredients"
         const val INGREDIENTS_PRICE = "IngredientsPrice"
@@ -76,12 +80,12 @@ class PrefManager(var context: Context) {
     }
 
     //Writing the map values to its specified shared preferences -*Fave
-    fun writeIngredientsValuesToPrefs(mapValuesAndKeys: Map<String ,Any>){
+    fun writeLivestockAgeRangeToPrefs(livestockAgeRange: AgeRange){
         val editor : SharedPreferences.Editor = getIngredientSp().edit()
 
         val gson = Gson()
-        val json = gson.toJson(mapValuesAndKeys) // myObject - instance of MyObject
-        editor.putString(INGREDIENTS, json)
+        val json = gson.toJson(livestockAgeRange) // myObject - instance of MyObject
+        editor.putString(LIVESTOCK_AGE_RANGE, json)
         editor.commit()
     }
     fun writeSubIngredientsValuesToPrefs(mapValuesAndKeys: Map<String ,Any>){
@@ -116,6 +120,13 @@ class PrefManager(var context: Context) {
         editor.putString(INGREDIENTS_DCP, json)
         editor.commit()
     }
+    fun writeCardDataToPrefs(inComingCarts: CartData) {
+        val editor : SharedPreferences.Editor = getIngredientSp().edit()
+        val gson = Gson()
+        val json = gson.toJson(inComingCarts)
+        editor.putString(CART_DATA, json)
+        editor.commit()
+    }
 
     fun writeFeedSizeValueToPrefs(feedsize : Double){
         val editor : SharedPreferences.Editor = getIngredientSp().edit()
@@ -128,11 +139,10 @@ class PrefManager(var context: Context) {
     }
 
     //Getting all the values for the Ingredient SharedPreferences -*Fave
-    fun getIngredientsValuesFromSP(): Map<String, Any>{
+    fun getLiveStockAgeRangeFromSP(): AgeRange{
         val gson = Gson()
-        val json = getIngredientSp().getString(INGREDIENTS, "")
-        val type = object : TypeToken<Map<String, Any>>() {}.type
-        return gson.fromJson(json, type)
+        val json = getIngredientSp().getString(LIVESTOCK_AGE_RANGE, "")
+        return gson.fromJson(json, AgeRange::class.java)
     }
     fun getSubIngredientsValuesFromSP(): Map<String, Any>{
         val gson = Gson()
@@ -207,6 +217,14 @@ class PrefManager(var context: Context) {
     fun getSelectedLiveStockToSP(): String?{
         return getLiveStockPrefs().getString(LIVESTOCK_KEY, "")
     }
+
+    fun getCartDataFromSF(): CartData {
+        val gson = Gson()
+        val json = getIngredientSp().getString(CART_DATA, "")
+        return gson.fromJson(json, CartData::class.java)
+    }
+
+
 }
 
 fun RecyclerView.init(context: Context){

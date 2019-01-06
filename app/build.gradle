@@ -64,7 +64,7 @@ dependencies {
     api 'android.arch.navigation:navigation-fragment:' + rootProject.navigationVersion
     api 'android.arch.navigation:navigation-ui:' + rootProject.navigationVersion
 
-    //[Fire base]
+    //[Fire base lib]
     api "com.google.firebase:firebase-core:$firebase_version"
     api 'com.google.firebase:firebase-firestore:17.1.4'
 
