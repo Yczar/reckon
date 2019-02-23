@@ -12,7 +12,7 @@ android {
     buildToolsVersion "28.0.3"
     defaultConfig {
         multiDexEnabled true
-        applicationId "com.example.reckon"
+        applicationId "dsc.app.reckon"
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 1

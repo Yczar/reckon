@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/selectIngredient"
-        android:name="com.example.reckon.ui.fragment.SelectIngredient"
+        android:name="dsc.app.reckon.ui.fragment.SelectIngredient"
         android:label="fragment_select_ingredient"
         tools:layout="@layout/fragment_select_ingredient">
         <action

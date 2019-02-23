@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:955520431408:android:0c961326ad733a15",
         "android_client_info": {
-          "package_name": "com.example.reckon"
+          "package_name": "dsc.app.reckon"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "955520431408-10800mg0bblftmnnimqva2kbujp0uq0p.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.reckon",
+            "package_name": "dsc.app.reckon",
             "certificate_hash": "b176e2057c7d0fc69bb442cd1cc683ae8058c7a1"
           }
         },
