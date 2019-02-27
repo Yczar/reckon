@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.reckon.R
-import com.example.reckon.utils.OnIngredientItemSelected
+import dsc.app.reckon.R
+import dsc.app.reckon.utils.OnIngredientItemSelected
 import org.jetbrains.anko.sdk27.coroutines.onCheckedChange
 
 class IngredientsAdapter(

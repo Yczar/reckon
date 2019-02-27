@@ -1,13 +1,11 @@
 package dsc.app.reckon.eCommerce
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import com.example.reckon.R
+import dsc.app.reckon.R
 
 import kotlinx.android.synthetic.main.ec_activity_e_commerce_host.*
 
@@ -19,10 +17,6 @@ class ECommerceHost : AppCompatActivity() {
         setContentView(R.layout.ec_activity_e_commerce_host)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
     }
 
     override fun onSupportNavigateUp()

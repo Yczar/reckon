@@ -12,15 +12,13 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
-import com.example.reckon.R
-import com.example.reckon.adapter.ModifyIngredientAdapter
-import com.example.reckon.eCommerce.adapter.InCartAdapter
-import com.example.reckon.eCommerce.database.CartData
-import com.example.reckon.eCommerce.view_model.AddToCartViewModel
-import com.example.reckon.eCommerce.view_model.InCartViewModel
-import com.example.reckon.utils.OnCartItemSelected
-import com.example.reckon.utils.PrefManager
+import dsc.app.reckon.R
+import dsc.app.reckon.eCommerce.adapter.InCartAdapter
+import dsc.app.reckon.eCommerce.database.CartData
+import dsc.app.reckon.eCommerce.view_model.AddToCartViewModel
+import dsc.app.reckon.eCommerce.view_model.InCartViewModel
+import dsc.app.reckon.utils.OnCartItemSelected
+import dsc.app.reckon.utils.PrefManager
 
 class InCart : Fragment(), OnCartItemSelected {
 

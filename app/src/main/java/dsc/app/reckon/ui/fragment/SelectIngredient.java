@@ -10,13 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.example.reckon.R;
-import com.example.reckon.adapter.IngredientsAdapter;
-import dsc.app.reckon.utils.FeedFormulation;
-import com.example.reckon.utils.OnIngredientItemSelected;
-import com.example.reckon.utils.PrefManager;
-import com.example.reckon.utils.ToolbarTitleListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -32,13 +25,19 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;import dsc.app.reckon.adapter.IngredientsAdapter;
+import androidx.recyclerview.widget.RecyclerView;
+import dsc.app.reckon.R;
+import dsc.app.reckon.adapter.IngredientsAdapter;
+import dsc.app.reckon.utils.FeedFormulation;
+import dsc.app.reckon.utils.OnIngredientItemSelected;
+import dsc.app.reckon.utils.PrefManager;
+import dsc.app.reckon.utils.ToolbarTitleListener;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SelectIngredient extends Fragment implements OnIngredientItemSelected{
+public class SelectIngredient extends Fragment implements OnIngredientItemSelected {
     private RecyclerView mRecyclerView;
     private RecyclerView mSubRecyclerView;
     private IngredientsAdapter mIngredientsAdapter;

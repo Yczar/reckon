@@ -1,10 +1,10 @@
 package dsc.app.reckon.utils
 
 import androidx.annotation.StringRes
-import com.example.reckon.data_model.AgeRange
-import com.example.reckon.data_model.LiveStockList
-import com.example.reckon.eCommerce.database.CartData
 import com.google.firebase.firestore.DocumentSnapshot
+import dsc.app.reckon.data_model.AgeRange
+import dsc.app.reckon.data_model.LiveStockList
+import dsc.app.reckon.eCommerce.database.CartData
 
 interface ToolbarTitleListener {
 

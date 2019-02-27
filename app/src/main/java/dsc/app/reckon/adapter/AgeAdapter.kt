@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.reckon.R
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
+import dsc.app.reckon.R
 import dsc.app.reckon.data_model.AgeRange
 import dsc.app.reckon.utils.OnAgeExpandListener
 import dsc.app.reckon.utils.PrefManager

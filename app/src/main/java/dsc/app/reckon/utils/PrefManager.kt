@@ -5,13 +5,13 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.reckon.R
-import com.example.reckon.data_model.AgeRange
-import com.example.reckon.data_model.LiveStockList
-import com.example.reckon.eCommerce.database.CartData
-import com.example.reckon.ui.activity.AppEntryPoint
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import dsc.app.reckon.R
+import dsc.app.reckon.data_model.AgeRange
+import dsc.app.reckon.data_model.LiveStockList
+import dsc.app.reckon.eCommerce.database.CartData
+import dsc.app.reckon.ui.activity.AppEntryPoint
 
 class PrefManager(var context: Context) {
 
@@ -176,7 +176,7 @@ class PrefManager(var context: Context) {
         editor.commit()
     }
     //Getting the selected livestock -*Fave
-    fun getSelectedLiveStockFromSP(): LiveStockList{
+    fun getSelectedLiveStockFromSP(): LiveStockList {
         val gson = Gson()
         val json = getIngredientSp().getString(MYLIVESTOCK_KEY, "")
         return gson.fromJson(json, LiveStockList::class.java)

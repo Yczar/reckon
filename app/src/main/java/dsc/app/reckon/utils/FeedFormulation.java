@@ -1,5 +1,7 @@
 package dsc.app.reckon.utils;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,6 +52,7 @@ public class FeedFormulation {
             //ingredients size ratio
             Double sizeValue = Double.valueOf(entry.getValue().toString()) / 1000;
             //get the ingredients DCP
+            Log.d("dddddddd", selectedIngredientsDCP.toString());
             Double value = Double.valueOf(selectedIngredientsDCP.get(key).toString());
 
             if (value > 20){

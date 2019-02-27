@@ -4,8 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.reckon.R
-import com.squareup.picasso.Picasso
+import dsc.app.reckon.R
 import kotlinx.android.synthetic.main.ec_item_formulated_details.view.*
 import java.text.DecimalFormat
 

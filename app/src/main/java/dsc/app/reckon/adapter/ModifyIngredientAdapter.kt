@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.reckon.R
 import com.google.android.material.textfield.TextInputEditText
 import android.text.Editable
-import com.example.reckon.utils.AfterIngValueModified
+import dsc.app.reckon.R
+import dsc.app.reckon.utils.AfterIngValueModified
 import java.text.DecimalFormat
 
 

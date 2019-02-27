@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/aquatic_menu"
-        android:name="com.example.reckon.ui.fragment.Fish"
+        android:name="dsc.app.reckon.ui.fragment.Fish"
         android:label="fragment_fish"
         tools:layout="@layout/fragment_livestocks" >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/poultry_menu"
-        android:name="com.example.reckon.ui.fragment.Poultry"
+        android:name="dsc.app.reckon.ui.fragment.Poultry"
         android:label="fragment_poultry"
         tools:layout="@layout/fragment_livestocks" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/age"
-        android:name="com.example.reckon.ui.fragment.Age"
+        android:name="dsc.app.reckon.ui.fragment.Age"
         android:label="fragment_age"
         tools:layout="@layout/fragment_age" >
         <argument
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/modifyIngredient"
-        android:name="com.example.reckon.ui.fragment.ModifyIngredient"
+        android:name="dsc.app.reckon.ui.fragment.ModifyIngredient"
         android:label="fragment_select_ingredient"
         tools:layout="@layout/fragment_select_ingredient" >
         <action

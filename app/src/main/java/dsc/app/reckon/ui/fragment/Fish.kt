@@ -7,15 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import com.example.reckon.R
-import com.example.reckon.data_model.LiveStockList
-import com.example.reckon.utils.OnLiveStockItemSelectedListener
-import com.example.reckon.utils.PrefManager
-import com.example.reckon.utils.ToolbarTitleListener
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.Query
+import dsc.app.reckon.R
+import dsc.app.reckon.data_model.LiveStockList
+import dsc.app.reckon.utils.OnLiveStockItemSelectedListener
+import dsc.app.reckon.utils.PrefManager
+import dsc.app.reckon.utils.ToolbarTitleListener
 import kotlinx.android.synthetic.main.fragment_livestocks.*
 
 class Fish : Fragment(), OnLiveStockItemSelectedListener {
@@ -61,7 +61,7 @@ class Fish : Fragment(), OnLiveStockItemSelectedListener {
         baseActivity.adapter.startListening()
     }
 
-    override fun onLiveStockSelected(snapshot: DocumentSnapshot, livestock:LiveStockList) {
+    override fun onLiveStockSelected(snapshot: DocumentSnapshot, livestock: LiveStockList) {
 
         PrefManager(context!!).writeMySelectedLiveStockToSP(livestock)
         //Wrote "Fish" to SharedPreferences - *Fave

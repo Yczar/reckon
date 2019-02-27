@@ -11,21 +11,20 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.reckon.R
-import com.example.reckon.data_model.AgeRange
-import com.example.reckon.utils.OnAgeExpandListener
-import com.example.reckon.utils.PrefManager
-import com.example.reckon.utils.ToolbarTitleListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.Query
+import dsc.app.reckon.R
+import dsc.app.reckon.data_model.AgeRange
+import dsc.app.reckon.utils.OnAgeExpandListener
+import dsc.app.reckon.utils.PrefManager
+import dsc.app.reckon.utils.ToolbarTitleListener
 import kotlinx.android.synthetic.main.fragment_age.*
 import kotlinx.android.synthetic.main.include_subtitle.view.*
-import org.jetbrains.anko.support.v4.find
 
-class Age : Fragment(), OnAgeExpandListener{
+class Age : Fragment(), OnAgeExpandListener {
 
     lateinit var ARG_ID: String
 
@@ -79,7 +78,7 @@ class Age : Fragment(), OnAgeExpandListener{
             }
 
             override fun onError(e: FirebaseFirestoreException) {
-                Snackbar.make(find(android.R.id.content), "$e", Snackbar.LENGTH_LONG).show()
+                //TODO Snackbar.make(find(android.R.id.content), "$e", Snackbar.LENGTH_LONG).show()
 
             }
         }

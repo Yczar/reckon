@@ -5,13 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
-import com.example.reckon.R
-import com.example.reckon.eCommerce.database.CartData
-import com.example.reckon.eCommerce.view_model.AddToCartViewModel
-import com.example.reckon.utils.OnAgeExpandListener
-import com.example.reckon.utils.OnCartItemSelected
-import com.example.reckon.utils.PrefManager
 import com.squareup.picasso.Picasso
+import dsc.app.reckon.R
+import dsc.app.reckon.eCommerce.database.CartData
+import dsc.app.reckon.utils.OnCartItemSelected
 import kotlinx.android.synthetic.main.ec_item_in_cart.view.*
 import java.text.DecimalFormat
 

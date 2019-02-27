@@ -3,8 +3,8 @@ package dsc.app.reckon.eCommerce.view_model
 import android.app.Application
 import android.os.AsyncTask
 import androidx.lifecycle.AndroidViewModel
-import com.example.reckon.eCommerce.database.AppDatabse
-import com.example.reckon.eCommerce.database.CartData
+import dsc.app.reckon.eCommerce.database.AppDatabse
+import dsc.app.reckon.eCommerce.database.CartData
 
 class AddToCartViewModel(application: Application) : AndroidViewModel(application) {
     val database : AppDatabse = AppDatabse.getAppDatabse(this.getApplication<Application>())!!

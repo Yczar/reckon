@@ -10,15 +10,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
-import com.example.reckon.R
-import com.example.reckon.eCommerce.adapter.IngredientDetailsAdater
-import com.example.reckon.eCommerce.database.CartData
-import com.example.reckon.utils.PrefManager
 import com.google.android.material.card.MaterialCardView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.squareup.picasso.Picasso
+import dsc.app.reckon.R
+import dsc.app.reckon.eCommerce.adapter.IngredientDetailsAdater
+import dsc.app.reckon.eCommerce.database.CartData
+import dsc.app.reckon.utils.PrefManager
 import java.text.DecimalFormat
 
 class FormulatedDetails : Fragment() {

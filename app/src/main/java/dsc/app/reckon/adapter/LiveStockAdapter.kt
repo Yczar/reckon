@@ -4,13 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.reckon.R
-import com.example.reckon.data_model.LiveStockList
-import com.example.reckon.utils.OnLiveStockItemSelectedListener
-import com.example.reckon.utils.PrefManager
+
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
 import com.squareup.picasso.Picasso
+import dsc.app.reckon.R
+import dsc.app.reckon.data_model.LiveStockList
+import dsc.app.reckon.utils.OnLiveStockItemSelectedListener
+import dsc.app.reckon.utils.PrefManager
 import kotlinx.android.synthetic.main.item_livestocks.view.*
 
 open class LiveStockAdapter(

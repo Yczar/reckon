@@ -10,20 +10,19 @@ import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import com.example.reckon.R
-import com.example.reckon.data_model.AgeRange
-import com.example.reckon.data_model.IngredientsDCP
-import com.example.reckon.data_model.IngredientsPrice
-import com.example.reckon.utils.PrefManager
-import com.example.reckon.utils.ToolbarTitleListener
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
+import dsc.app.reckon.R
+import dsc.app.reckon.data_model.IngredientsDCP
+import dsc.app.reckon.data_model.IngredientsPrice
+import dsc.app.reckon.utils.PrefManager
+import dsc.app.reckon.utils.ToolbarTitleListener
 import kotlinx.android.synthetic.main.app_bar.*
 import kotlinx.android.synthetic.main.app_bar.view.*
 
-class AppEntryPoint : dsc.app.reckon.BaseActivity(), ToolbarTitleListener{
+class AppEntryPoint : dsc.app.reckon.BaseActivity(), ToolbarTitleListener {
 
 
     private var drawerLayout : DrawerLayout? = null

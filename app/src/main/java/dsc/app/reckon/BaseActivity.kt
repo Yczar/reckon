@@ -5,12 +5,11 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.reckon.adapter.LiveStockAdapter
-import com.example.reckon.utils.OnLiveStockItemSelectedListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
-import org.jetbrains.anko.find
+import dsc.app.reckon.adapter.LiveStockAdapter
+import dsc.app.reckon.utils.OnLiveStockItemSelectedListener
 
 open class BaseActivity : AppCompatActivity(){
 
@@ -43,7 +42,7 @@ open class BaseActivity : AppCompatActivity(){
             }
 
             override fun onError(e: FirebaseFirestoreException) {
-                Snackbar.make(find(android.R.id.content), "$e", Snackbar.LENGTH_LONG).show()
+                //TODO Snackbar.make(find(android.R.id.content), "$e", Snackbar.LENGTH_LONG).show()
             }
         }
         rv.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
